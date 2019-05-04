@@ -3,11 +3,10 @@ error_reporting(0);
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "book_data";
-$datatable = "book_details"; // MySQL table name
-$authortable = "author";
-$results_per_page = 10; // number of results per page
-$results_per_page2 = 5;
+$dbname = "project_ids";
+$product_table = "product";
+$product_cat = "category";
+$product_sub_cat = "sub_category";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
