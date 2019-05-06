@@ -7,6 +7,7 @@ $dbname = "project_ids";
 $product_table = "product";
 $product_cat = "category";
 $product_sub_cat = "sub_category";
+$rating_tbl = "rating";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
