@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,15 +99,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<li class="dropdown head-dpdn">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="login.html">Login </a></li>  
-							<li><a href="login.html">My Orders</a></li>
+							<li><a href="login.php">Login </a></li>  
+							<li><a href="login.php">My Orders</a></li>
 						</ul> 
 					</li>  
 					<li class="dropdown head-dpdn">
-						<a href="help.html" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
+						<a href="help.php" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
 					</li>
 					<li class="dropdown head-dpdn">
-						<a href="signup.html" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Sign Up</a>
+						<a href="signup.php" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Sign Up</a>
 					</li>
 				</ul>
 			</div>
@@ -122,7 +116,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<div class="header-two"><!-- header-two -->
 			<div class="container">
 				<div class="header-logo">
-					<h1><a href="index.html"><span>S</span>abka</a></h1>
+					<h1><a href="index.php"><span>S</span>abka</a></h1>
 				</div>	
 				<div class="header-search">
 					<form action="#" method="post">
@@ -158,7 +152,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<div class="col-md-12 product-w3ls-right">
 				<!-- breadcrumbs --> 
 				<ol class="breadcrumb breadcrumb1">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li class="active"></li>
 				</ol> 
 				<div class="clearfix"> </div>
@@ -185,17 +179,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="col-md-4 product-grids">
 						<div class="agile-products">
 							<!-- <div class="new-tag"><h6>New</h6></div> -->
-							<a href="<?php echo 'single.html?id='.$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" class="img-responsive" alt="img"></a>
+							<a href="<?php echo 'single.php?id='.$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" class="img-responsive" alt="img"></a>
 							<div class="agile-product-text">              
-								<h5><a href="single.html"><?php echo $row["PName"] ?></a></h5> 
-								<h6><del><?php echo $row["Cost"] ?></del> <?php echo $row["Cost"]- ($row["Cost"]*$row["Discount"])/100 ?></h6> 
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" /> 
-									<input type="hidden" name="w3ls_item" value="<?php echo $row['PName'] ?>" /> 
-									<input type="hidden" name="amount" value="<?php echo $row['Cost']- ($row['Cost']*$row['Discount'])/100 ?>" /> 
-									<button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-								</form>
+								<h5><a href="single.php"><?php echo $row["PName"] ?></a></h5> 
+								<h6><del>&#x24;<?php echo intval($row["Cost"]*1.4)/100 ?></del> &#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h6> 
 							</div>
 						</div>
 					</div>
@@ -292,7 +279,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h2><a href="index.html"><span>S</span>mart <i>Bazaar</i></a></h2>
+						<h2><a href="index.php"><span>S</span>mart <i>Bazaar</i></a></h2>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>
@@ -306,20 +293,20 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="col-md-4 footer-grids">
 						<h3>Company</h3>
 						<ul>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="marketplace.html">Marketplace</a></li>  
-							<li><a href="values.html">Core Values</a></li>  
-							<li><a href="privacy.html">Privacy Policy</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="marketplace.php">Marketplace</a></li>  
+							<li><a href="values.php">Core Values</a></li>  
+							<li><a href="privacy.php">Privacy Policy</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4 footer-grids">
 						<h3>Services</h3>
 						<ul>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="login.html">Returns</a></li> 
-							<li><a href="faq.html">FAQ</a></li>
-							<li><a href="sitemap.html">Site Map</a></li>
-							<li><a href="login.html">Order Status</a></li>
+							<li><a href="contact.php">Contact Us</a></li>
+							<li><a href="login.php">Returns</a></li> 
+							<li><a href="faq.php">FAQ</a></li>
+							<li><a href="sitemap.php">Site Map</a></li>
+							<li><a href="login.php">Order Status</a></li>
 						</ul> 
 					</div>
 					<div class="col-md-4 footer-grids">

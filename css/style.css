@@ -849,6 +849,7 @@ p {
     -moz-transition: 0.5s all;
 	transition: 0.5s all;
 }
+
 .subscribe input[type="submit"] {
     float: left;
     color: #999;
@@ -1488,7 +1489,7 @@ input#amount {
 .login-top  h4  a:hover{
     color: #353f49;
 }
-.login-page input[type="text"], .login-page input[type="password"] {
+.login-page input[type="text"], .login-page input[type="password"], .login-page select, .login-page option, .login-page [type="file"] {
     font-size: 1em;
     padding: 0.9em 1em;
     width: 100%;

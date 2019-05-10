@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,15 +102,18 @@ $(document).ready(function() {
 					<li class="dropdown head-dpdn">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="login.html">Login </a></li>  
-							<li><a href="login.html">My Orders</a></li>
+							<li><a href="login.php">Login </a></li>  
+							<li><a href="login.php">My Orders</a></li>
 						</ul> 
 					</li>  
 					<li class="dropdown head-dpdn">
-						<a href="help.html" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
+						<a href="help.php" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
 					</li>
 					<li class="dropdown head-dpdn">
-						<a href="signup.html" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Sign Up</a>
+						<a href="login.php" class="dropdown-toggle">Login</a>
+					</li>
+					<li class="dropdown head-dpdn">
+						<a href="signup.php" class="dropdown-toggle">Sign Up</a>
 					</li>
 				</ul>
 			</div>
@@ -125,7 +122,7 @@ $(document).ready(function() {
 		<div class="header-two"><!-- header-two -->
 			<div class="container">
 				<div class="header-logo">
-					<h1><a href="index.html"><span>S</span>abka</a></h1>
+					<h1><a href="index.php"><span>S</span>abka</a></h1>
 				</div>	
 				<div class="header-search">
 					<form action="#" method="post">
@@ -137,9 +134,7 @@ $(document).ready(function() {
 				</div>
 				<div class="header-cart"> 
 					<div class="my-account">
-						<form action="#" method="post" class="last"> 
-							<input type="hidden" name="cmd" value="_cart" />
-							<input type="hidden" name="display" value="1" />
+						<form action="cart.php" method="post" class="last"> 
 							<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 						</form> 
 					</div>
@@ -247,18 +242,11 @@ $(document).ready(function() {
 								?>
 									<div class="item">
 									<div class="glry-w3agile-grids agileits"> 
-										<a href="products.html"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
+										<a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
 										<div class="view-caption agileits-w3layouts">           
-											<h4><a href="products.html"><?php echo $row['PName'] ?></a></h4>
-											<p><?php echo $row['sm_desp'] ?></p>
-											<h5>&#8377;<?php echo $row['Cost'] ?></h5> 
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" /> 
-												<input type="hidden" name="w3ls_item" value="<?php echo $row['PName']?>" /> 
-												<input type="hidden" name="amount" value="<?php echo $row['Cost'].".00" ?>" /> 
-												<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-											</form>  
+											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
+											<p><?php echo $row['sm_Desp'] ?></p>
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4> 	  
 										</div>   
 									</div>   
 									</div>
@@ -290,24 +278,17 @@ $(document).ready(function() {
 									include 'connect.php';
 								?>
 								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '101' ORDER BY Rating DESC LIMIT 5;";
+								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '102' ORDER BY Rating DESC LIMIT 5;";
 								$re_result = $conn->query($sql);
 									while($row = $re_result->fetch_assoc()){
 								?>
 									<div class="item">
 									<div class="glry-w3agile-grids agileits"> 
-										<a href="products.html"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
+										<a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
 										<div class="view-caption agileits-w3layouts">           
-											<h4><a href="products.html"><?php echo $row['PName'] ?></a></h4>
-											<p><?php echo $row['sm_desp'] ?></p>
-											<h5>&#8377;<?php echo $row['Cost'] ?></h5> 
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" /> 
-												<input type="hidden" name="w3ls_item" value="<?php echo $row['PName']?>" /> 
-												<input type="hidden" name="amount" value="<?php echo $row['Cost'].".00" ?>" /> 
-												<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-											</form>  
+											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
+											<p><?php echo $row['sm_Desp'] ?></p>
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4>
 										</div>   
 									</div>   
 									</div>
@@ -339,24 +320,17 @@ $(document).ready(function() {
 									include 'connect.php';
 								?>
 								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '101' ORDER BY Rating DESC LIMIT 5;";
+								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '103' ORDER BY Rating DESC LIMIT 5;";
 								$re_result = $conn->query($sql);
 									while($row = $re_result->fetch_assoc()){
 								?>
 									<div class="item">
 									<div class="glry-w3agile-grids agileits"> 
-										<a href="products.html"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
+										<a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
 										<div class="view-caption agileits-w3layouts">           
-											<h4><a href="products.html"><?php echo $row['PName'] ?></a></h4>
-											<p><?php echo $row['sm_desp'] ?></p>
-											<h5>&#8377;<?php echo $row['Cost'] ?></h5> 
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" /> 
-												<input type="hidden" name="w3ls_item" value="<?php echo $row['PName']?>" /> 
-												<input type="hidden" name="amount" value="<?php echo $row['Cost'].".00" ?>" /> 
-												<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-											</form>  
+											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
+											<p><?php echo $row['sm_Desp'] ?></p>
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4>
 										</div>   
 									</div>   
 									</div>
@@ -388,24 +362,17 @@ $(document).ready(function() {
 									include 'connect.php';
 								?>
 								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '101' ORDER BY Rating DESC LIMIT 5;";
+								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '104' ORDER BY Rating DESC LIMIT 5;";
 								$re_result = $conn->query($sql);
 									while($row = $re_result->fetch_assoc()){
 								?>
 									<div class="item">
 									<div class="glry-w3agile-grids agileits"> 
-										<a href="products.html"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
+										<a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
 										<div class="view-caption agileits-w3layouts">           
-											<h4><a href="products.html"><?php echo $row['PName'] ?></a></h4>
-											<p><?php echo $row['sm_desp'] ?></p>
-											<h5>&#8377;<?php echo $row['Cost'] ?></h5> 
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" /> 
-												<input type="hidden" name="w3ls_item" value="<?php echo $row['PName']?>" /> 
-												<input type="hidden" name="amount" value="<?php echo $row['Cost'].".00" ?>" /> 
-												<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-											</form>  
+											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
+											<p><?php echo $row['sm_Desp'] ?></p>
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4> 
 										</div>   
 									</div>   
 									</div>
@@ -436,24 +403,17 @@ $(document).ready(function() {
 									include 'connect.php';
 								?>
 								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '101' ORDER BY Rating DESC LIMIT 5;";
+								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '105' ORDER BY Rating DESC LIMIT 5;";
 								$re_result = $conn->query($sql);
 								while($row = $re_result->fetch_assoc()){
 								?>
 									<div class="item">
 									<div class="glry-w3agile-grids agileits"> 
-										<a href="products.html"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
+										<a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" height="150px" alt="img"></a>
 										<div class="view-caption agileits-w3layouts">           
-											<h4><a href="products.html"><?php echo $row['PName'] ?></a></h4>
-											<p><?php echo $row['sm_desp'] ?></p>
-											<h5>&#8377;<?php echo $row['Cost'] ?></h5> 
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" /> 
-												<input type="hidden" name="w3ls_item" value="<?php echo $row['PName']?>" /> 
-												<input type="hidden" name="amount" value="<?php echo $row['Cost'].".00" ?>" /> 
-												<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-											</form>  
+											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
+											<p><?php echo $row['sm_Desp'] ?></p>
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4>  
 										</div>   
 									</div>   
 									</div>
@@ -474,19 +434,19 @@ $(document).ready(function() {
 		<div class="container">  
 			<div class="add-products-row">
 				<div class="w3ls-add-grids">
-					<a href="products1.html"> 
+					<a href="products1.php"> 
 						<h4>TOP 10 TRENDS FOR YOU FLAT <span>20%</span> OFF</h4>
 						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
 					</a>
 				</div>
 				<div class="w3ls-add-grids w3ls-add-grids-mdl">
-					<a href="products1.html"> 
+					<a href="products1.php"> 
 						<h4>SUNDAY SPECIAL DISCOUNT FLAT <span>40%</span> OFF</h4>
 						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
 					</a>
 				</div>
 				<div class="w3ls-add-grids w3ls-add-grids-mdl1">
-					<a href="products.html"> 
+					<a href="products.php"> 
 						<h4>LATEST DESIGNS FOR YOU <span> Hurry !</span></h4>
 						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
 					</a>
@@ -517,55 +477,55 @@ $(document).ready(function() {
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid"> 
-					<a href="products.html" class="wthree-btn wthree1"> 
+					<a href="products.php" class="wthree-btn wthree1"> 
 						<div class="focus-image"><i class="fa fa-laptop"></i></div>
 						<h4 class="clrchg"> Electronics & Appliances</h4> 
 					</a>
 				</div> 
 				<div class="col-md-3 focus-grid"> 
-					<a href="products4.html" class="wthree-btn wthree2"> 
+					<a href="products4.php" class="wthree-btn wthree2"> 
 						<div class="focus-image"><i class="fa fa-wheelchair"></i></div>
 						<h4 class="clrchg">Furnitures</h4>
 					</a>
 				</div> 
 				<div class="col-md-3 focus-grid"> 
-					<a href="products3.html" class="wthree-btn wthree3"> 
+					<a href="products3.php" class="wthree-btn wthree3"> 
 						<div class="focus-image"><i class="fa fa-home"></i></div>
 						<h4 class="clrchg">Home Decor</h4>
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products9.html" class="wthree-btn wthree3"> 
+					<a href="products9.php" class="wthree-btn wthree3"> 
 						<div class="focus-image"><i class="fa fa-book"></i></div>
 						<h4 class="clrchg">Books & Music</h4> 
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products1.html" class="wthree-btn wthree4"> 
+					<a href="products1.php" class="wthree-btn wthree4"> 
 						<div class="focus-image"><i class="fa fa-asterisk"></i></div>
 						<h4 class="clrchg">Fashion</h4>
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products2.html" class="wthree-btn wthree2"> 
+					<a href="products2.php" class="wthree-btn wthree2"> 
 						<div class="focus-image"><i class="fa fa-gamepad"></i></div>
 						<h4 class="clrchg">Kids</h4>
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products5.html" class="wthree-btn wthree"> 
+					<a href="products5.php" class="wthree-btn wthree"> 
 						<div class="focus-image"><i class="fa fa-shopping-basket"></i></div>
 						<h4 class="clrchg">Groceries</h4>
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products7.html" class="wthree-btn wthree5"> 
+					<a href="products7.php" class="wthree-btn wthree5"> 
 						<div class="focus-image"><i class="fa fa-medkit"></i></div>
 						<h4 class="clrchg">Health</h4> 
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products8.html" class="wthree-btn wthree1"> 
+					<a href="products8.php" class="wthree-btn wthree1"> 
 						<div class="focus-image"><i class="fa fa-car"></i></div>
 						<h4 class="clrchg">Automotive</h4> 
 					</a>
@@ -651,7 +611,7 @@ $(document).ready(function() {
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h2><a href="index.html"><span>S</span>mart <i>Bazaar</i></a></h2>
+						<h2><a href="index.php"><span>S</span>mart <i>Bazaar</i></a></h2>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>
@@ -665,20 +625,20 @@ $(document).ready(function() {
 					<div class="col-md-4 footer-grids">
 						<h3>Company</h3>
 						<ul>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="marketplace.html">Marketplace</a></li>  
-							<li><a href="values.html">Core Values</a></li>  
-							<li><a href="privacy.html">Privacy Policy</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="marketplace.php">Marketplace</a></li>  
+							<li><a href="values.php">Core Values</a></li>  
+							<li><a href="privacy.php">Privacy Policy</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4 footer-grids">
 						<h3>Services</h3>
 						<ul>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="login.html">Returns</a></li> 
-							<li><a href="faq.html">FAQ</a></li>
-							<li><a href="sitemap.html">Site Map</a></li>
-							<li><a href="login.html">Order Status</a></li>
+							<li><a href="contact.php">Contact Us</a></li>
+							<li><a href="login.php">Returns</a></li> 
+							<li><a href="faq.php">FAQ</a></li>
+							<li><a href="sitemap.php">Site Map</a></li>
+							<li><a href="login.php">Order Status</a></li>
 						</ul> 
 					</div>
 				</div>
@@ -713,61 +673,6 @@ $(document).ready(function() {
 	<!-- countdown.js -->	
 	<script src="js/jquery.knob.js"></script>
 	<script src="js/jquery.throttle.js"></script>
-	<script src="js/jquery.classycountdown.js"></script>
-		<script>
-			$(document).ready(function() {
-				$('#countdown1').ClassyCountdown({
-					end: '1388268325',
-					now: '1387999995',
-					labels: true,
-					style: {
-						element: "",
-						textResponsive: .5,
-						days: {
-							gauge: {
-								thickness: .10,
-								bgColor: "rgba(0,0,0,0)",
-								fgColor: "#1abc9c",
-								lineCap: 'round'
-							},
-							textCSS: 'font-weight:300; color:#fff;'
-						},
-						hours: {
-							gauge: {
-								thickness: .10,
-								bgColor: "rgba(0,0,0,0)",
-								fgColor: "#05BEF6",
-								lineCap: 'round'
-							},
-							textCSS: ' font-weight:300; color:#fff;'
-						},
-						minutes: {
-							gauge: {
-								thickness: .10,
-								bgColor: "rgba(0,0,0,0)",
-								fgColor: "#8e44ad",
-								lineCap: 'round'
-							},
-							textCSS: ' font-weight:300; color:#fff;'
-						},
-						seconds: {
-							gauge: {
-								thickness: .10,
-								bgColor: "rgba(0,0,0,0)",
-								fgColor: "#f39c12",
-								lineCap: 'round'
-							},
-							textCSS: ' font-weight:300; color:#fff;'
-						}
-
-					},
-					onEndCallback: function() {
-						console.log("Time out!");
-					}
-				});
-			});
-		</script>
-	<!-- //countdown.js -->
 	<!-- menu js aim -->
 	<script src="js/jquery.menu-aim.js"> </script>
 	<script src="js/main.js"></script> <!-- Resource jQuery -->

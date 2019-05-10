@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -8,6 +9,7 @@ $product_table = "product";
 $product_cat = "category";
 $product_sub_cat = "sub_category";
 $rating_tbl = "rating";
+$cart = "cart";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
