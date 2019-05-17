@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['id'])){
+		header("location: login.php");
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,21 +90,25 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<div class="header">
 		<div class="w3ls-header"><!--header-one--> 
 			<div class="w3ls-header-right">
-				<ul>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="login.php">Login </a></li>  
-							<li><a href="login.php">My Orders</a></li>
-						</ul> 
-					</li>  
-					<li class="dropdown head-dpdn">
-						<a href="help.php" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="signup.php" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Sign Up</a>
-					</li>
-				</ul>
+            <ul> 
+                <?php if(isset($_SESSION['id'])){ ?>
+                    <li class="dropdown head-dpdn">
+                        <a href="dashboard.php" class="dropdown-toggle">Dashboard</a>
+                    </li>
+                    <li class="dropdown head-dpdn">
+                        <form action="signout.php" method="post">
+                            <button class="dropdown-toggle" style="background-color: Transparent;background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; color:white">Sign Out</button>
+                        </form>
+                    </li>
+                <?php } else { ?>
+                    <li class="dropdown head-dpdn">
+                        <a href="login.php" class="dropdown-toggle">Login</a>
+                    </li>
+                    <li class="dropdown head-dpdn">
+                        <a href="signup.php" class="dropdown-toggle">Sign Up</a>
+                    </li>
+                <?php }; ?>
+            </ul>
 			</div>
 			<div class="clearfix"> </div> 
 		</div>
@@ -108,7 +118,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         include 'connect.php';
     ?>
     <div class="container" style="padding-top:50px">
-    <div class="row">
     <?php
     // $sql = "SELECT * FROM ".$cart." WHERE customerid=".$_SESSION['id'].";";
     $sql = "SELECT cart.quantity as quantity , product.ProductID as prodid ,product.PName as name, product.Cost as mrp, product.Discount as discount, product.Picture as pic
@@ -116,25 +125,37 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     INNER JOIN cart ON product.ProductID=cart.ProductID and cart.CustomerID=".$_SESSION['id'].";"; 
     // echo $sql;
     $re_result = $conn->query($sql);
+    if($row = $re_result->fetch_assoc() == ""){ ?>
+        <div class="jumbotron">
+            <div class="container">
+            <h3 class="display-4">You currently do not have any product in your card</h3><br>
+            <p class="lead"><a href=".">Continue Shopping</a></p>
+            </div>
+        </div>
+    <?php }
+    else {
+        $re_result = $conn->query($sql);
         while($row = $re_result->fetch_assoc()){
     ?> 	
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="card" style="background-color: white; @media screen and (max-width: 575px){.card{width: 85%;margin-left: 7.5%;margin-bottom: 20px;}}@media screen and (min-width: 575px){.card{width: 95%;margin-left: 2.5%;margin-bottom: 20px;}">
-            <img class="card-img-top" src="<?php echo "images/".$row['pic'] ?>" alt="<?php echo $row['PName'] ?>" style="width:100%">
-            <div class="card-body">
-            <h4 class="card-title"><a href="<?php echo "single.php?id=".$row['prodid'] ?>"><?php echo $row['name'] ?></a></h4>
-            <p class="card-text">Price: &#x24;<?php echo intval(($row["mrp"]- ($row["mrp"]*$row["discount"])/100)*0.014) ?></p>
-            <p>Quantity: <?php echo $row['quantity'] ?></p>
+        <div class="jumbotron">
+            <div class="container">
+            <div class="row">
+            <div class="col-lg-4 col-md-4"><img src="<?php echo "images/".$row['pic'] ?>" alt="<?php echo $row['PName'] ?>" width="80%"></div>
+            <div class="col-lg-4 col-md-8"
+            <a href="<?php echo "single.php?id=".$row['prodid'] ?>"><h2><?php echo $row['name'] ?></h2></a></br>
+            <span>Price: &#x24;<?php echo intval(($row["mrp"]- ($row["mrp"]*$row["discount"])/100)*1.4)/100 ?></span></br>
+            <span>Quantity: <?php echo $row['quantity'] ?></span>
             <form action="<?php echo 'remove.php?prodid='.$row['prodid']?>" method="post">
                 <input type="submit" value="Remove">
             </form>
             </div>
             </div>
+            </div>
         </div>
     <?php
-        };
+        }
+    }
     ?>
-    </div>
     </div>
 	<!-- menu js aim -->
 	<script src="js/jquery.menu-aim.js"> </script>

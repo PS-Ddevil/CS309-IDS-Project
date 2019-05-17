@@ -1,7 +1,9 @@
 <?php
    include("connect.php");
+   if(isset($_SESSION['id'])){
+		header("location: .");
+	}
    session_start();
-   
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
@@ -22,12 +24,10 @@
       // If result matched $myusername and $mypassword, table row must be 1 row
         
       if($count == 1) {
-         $_SESSION['login_user'] = $myemail;
          $_SESSION['id'] = $id;
-         header("location: index.php");
+         header("location: .");
       }else {
-         $error = "Your Login Name or Password is invalid";
-         echo $error;
+         header("location: err_login.php");
       }
    }
 ?>

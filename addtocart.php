@@ -1,5 +1,9 @@
 <?php
     include "connect.php";
+    session_start();
+    if(!isset($_SESSION['id'])){
+		header("location: login.php");
+	}
     $productid = $_GET['prodid'];
     $custid = $_SESSION['id'];
     $quantity = $_POST['quantity'];

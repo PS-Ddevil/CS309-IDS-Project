@@ -30,9 +30,8 @@ $sql = "INSERT INTO customer(CustomerName, Address, Phone, Email, Picture, Credi
 if(mysqli_query($conn, $sql)){
     header("Location: login.php");
 }else{
-    echo "Error: ".$sql."<br>".mysqli_error($conn);
+    header("Location: err_signup.php");
 }
 
-// echo readfile("submitted.html");
 mysqli_close($conn);
 ?>

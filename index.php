@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+<!-- <?php echo "<script>alert(".$_SESSION['id'].");</script>" ?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,23 +102,24 @@ $(document).ready(function() {
 	<div class="header">
 		<div class="w3ls-header"><!--header-one--> 
 			<div class="w3ls-header-right">
-				<ul>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="login.php">Login </a></li>  
-							<li><a href="login.php">My Orders</a></li>
-						</ul> 
-					</li>  
-					<li class="dropdown head-dpdn">
-						<a href="help.php" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="login.php" class="dropdown-toggle">Login</a>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="signup.php" class="dropdown-toggle">Sign Up</a>
-					</li>
+				<ul> 
+					<?php if(isset($_SESSION['id'])){ ?>
+						<li class="dropdown head-dpdn">
+							<a href="dashboard.php" class="dropdown-toggle">Dashboard</a>
+						</li>
+						<li class="dropdown head-dpdn">
+							<form action="signout.php" method="post">
+								<button class="dropdown-toggle" style="background-color: Transparent;background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; color:white">Sign Out</button>
+							</form>
+						</li>
+					<?php } else { ?>
+						<li class="dropdown head-dpdn">
+							<a href="login.php" class="dropdown-toggle">Login</a>
+						</li>
+						<li class="dropdown head-dpdn">
+							<a href="signup.php" class="dropdown-toggle">Sign Up</a>
+						</li>
+					<?php }; ?>
 				</ul>
 			</div>
 			<div class="clearfix"> </div> 

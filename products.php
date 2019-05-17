@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,56 +98,40 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<div class="header">
 		<div class="w3ls-header"><!--header-one--> 
 			<div class="w3ls-header-right">
-				<ul>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="login.php">Login </a></li>  
-							<li><a href="login.php">My Orders</a></li>
-						</ul> 
-					</li>  
-					<li class="dropdown head-dpdn">
-						<a href="help.php" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="signup.php" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Sign Up</a>
-					</li>
+			<ul> 
+					<?php if(isset($_SESSION['id'])){ ?>
+						<li class="dropdown head-dpdn">
+							<a href="dashboard.php" class="dropdown-toggle">Dashboard</a>
+						</li>
+						<li class="dropdown head-dpdn">
+							<form action="signout.php" method="post">
+								<button class="dropdown-toggle" style="background-color: Transparent;background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; color:white">Sign Out</button>
+							</form>
+						</li>
+					<?php } else { ?>
+						<li class="dropdown head-dpdn">
+							<a href="login.php" class="dropdown-toggle">Login</a>
+						</li>
+						<li class="dropdown head-dpdn">
+							<a href="signup.php" class="dropdown-toggle">Sign Up</a>
+						</li>
+					<?php }; ?>
 				</ul>
 			</div>
 			<div class="clearfix"> </div> 
 		</div>
-		<div class="header-two"><!-- header-two -->
-			<div class="container">
-				<div class="header-logo">
-					<h1><a href="index.php"><span>S</span>abka</a></h1>
-				</div>	
-				<div class="header-search">
-					<form action="#" method="post">
-						<input type="search" name="Search" placeholder="Search for a Product..." required="">
-						<button type="submit" class="btn btn-default" aria-label="Left Align">
-							<i class="fa fa-search" aria-hidden="true"> </i>
-						</button>
-					</form>
-				</div>
-				<div class="header-cart"> 
-					<div class="my-account">
-						<form action="#" method="post" class="last"> 
-							<input type="hidden" name="cmd" value="_cart" />
-							<input type="hidden" name="display" value="1" />
-							<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form> 
-					</div>
-				</div> 
-			</div>		
-		</div><!-- //header-two -->
 	</div>
 	<!-- //header --> 
 	<!-- PHP -->
 	<?php
 		include "connect.php";
 		$product_id = $_GET['type'];
-		$sql = "SELECT * FROM ".$product_table." WHERE Sub_Cat = '1001' ORDER BY Rating DESC LIMIT 5;";
+		$sql = "SELECT * FROM ".$product_table." WHERE Sub_Cat = ".$product_id." ORDER BY Rating DESC LIMIT 5;";
+		$sql2 = "SELECT Sub_Name FROM ".$product_sub_cat." WHERE Sub_Cat = ".$product_id.";";
 		$re_result = $conn->query($sql);
+		$result = $conn->query($sql2);
+		$row_p = $result->fetch_assoc();
+		$page_ref = $row_p['Sub_Name'];
 	?>	
 	<!-- products -->
 	<div class="products">	 
@@ -152,26 +139,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<div class="col-md-12 product-w3ls-right">
 				<!-- breadcrumbs --> 
 				<ol class="breadcrumb breadcrumb1">
-					<li><a href="index.php">Home</a></li>
-					<li class="active"></li>
+					<li><a href=".">Home</a></li>
+					<li class="active"><?php echo $page_ref ?></li>
 				</ol> 
 				<div class="clearfix"> </div>
-				<!-- //breadcrumbs -->
-				<div class="product-top">
-					<h4>Electronics</h4>
-					<ul> 
-						<li class="dropdown head-dpdn">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Filter By<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Low price</a></li> 
-								<li><a href="#">High price</a></li>
-								<li><a href="#">Latest</a></li> 
-								<li><a href="#">Popular</a></li> 
-							</ul> 
-						</li>
-					</ul> 
-					<div class="clearfix"> </div>
-				</div>
 				<div class="products-row">
 					<?php 
 						while($row = $re_result->fetch_assoc()){
