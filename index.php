@@ -482,57 +482,57 @@ $(document).ready(function() {
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid"> 
-					<a href="products.php" class="wthree-btn wthree1"> 
+					<a href="products.php?type=1007" class="wthree-btn wthree1"> 
 						<div class="focus-image"><i class="fa fa-laptop"></i></div>
-						<h4 class="clrchg"> Electronics & Appliances</h4> 
+						<h4 class="clrchg"> Laptop</h4> 
 					</a>
 				</div> 
 				<div class="col-md-3 focus-grid"> 
-					<a href="products4.php" class="wthree-btn wthree2"> 
-						<div class="focus-image"><i class="fa fa-wheelchair"></i></div>
-						<h4 class="clrchg">Furnitures</h4>
+					<a href="products.php?type=1005" class="wthree-btn wthree2"> 
+						<div class="focus-image"><i class="fa fa-tv"></i></div>
+						<h4 class="clrchg">Television</h4>
 					</a>
 				</div> 
 				<div class="col-md-3 focus-grid"> 
-					<a href="products3.php" class="wthree-btn wthree3"> 
-						<div class="focus-image"><i class="fa fa-home"></i></div>
-						<h4 class="clrchg">Home Decor</h4>
+					<a href="products.php?type=5001" class="wthree-btn wthree3"> 
+						<div class="focus-image"><i class="fa fa-volleyball-ball"></i></div>
+						<h4 class="clrchg">Bat</h4>
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products9.php" class="wthree-btn wthree3"> 
+					<a href="products.php?type=3001" class="wthree-btn wthree3"> 
 						<div class="focus-image"><i class="fa fa-book"></i></div>
-						<h4 class="clrchg">Books & Music</h4> 
+						<h4 class="clrchg">Books</h4> 
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products1.php" class="wthree-btn wthree4"> 
-						<div class="focus-image"><i class="fa fa-asterisk"></i></div>
-						<h4 class="clrchg">Fashion</h4>
+					<a href="products.php?type=4002" class="wthree-btn wthree4"> 
+						<div class="focus-image"><i class="fa fa-clock"></i></div>
+						<h4 class="clrchg">Clock</h4>
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products2.php" class="wthree-btn wthree2"> 
-						<div class="focus-image"><i class="fa fa-gamepad"></i></div>
-						<h4 class="clrchg">Kids</h4>
+					<a href="products.php?type=2004" class="wthree-btn wthree2"> 
+						<div class="focus-image"><i class="fa fa-shoe-prints"></i></div>
+						<h4 class="clrchg">Shoes</h4>
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products5.php" class="wthree-btn wthree"> 
-						<div class="focus-image"><i class="fa fa-shopping-basket"></i></div>
-						<h4 class="clrchg">Groceries</h4>
+					<a href="products.php?type=1006" class="wthree-btn wthree"> 
+						<div class="focus-image"><i class="fas fa-camera"></i></div>
+						<h4 class="clrchg">Camera</h4>
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products7.php" class="wthree-btn wthree5"> 
-						<div class="focus-image"><i class="fa fa-medkit"></i></div>
-						<h4 class="clrchg">Health</h4> 
+					<a href="products.php?type=4001" class="wthree-btn wthree5"> 
+						<div class="focus-image"><i class="fas fa-paint-brush"></i></div>
+						<h4 class="clrchg">Art</h4> 
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products8.php" class="wthree-btn wthree1"> 
-						<div class="focus-image"><i class="fa fa-car"></i></div>
-						<h4 class="clrchg">Automotive</h4> 
+					<a href="products.php?type=5002" class="wthree-btn wthree1"> 
+						<div class="focus-image"><i class="fa fa-tshirt"></i></div>
+						<h4 class="clrchg">Jersey</h4> 
 					</a>
 				</div> 
 				<div class="clearfix"> </div>

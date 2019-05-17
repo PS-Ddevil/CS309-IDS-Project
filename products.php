@@ -150,7 +150,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="col-md-4 product-grids">
 						<div class="agile-products">
 							<!-- <div class="new-tag"><h6>New</h6></div> -->
-							<a href="<?php echo 'single.php?id='.$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" class="img-responsive" alt="img"></a>
+							<div style="min-height:200px"><a href="<?php echo 'single.php?id='.$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" class="img-responsive" alt="img"></a></div>
 							<div class="agile-product-text">              
 								<h5><a href="single.php"><?php echo $row["PName"] ?></a></h5> 
 								<h6><del>&#x24;<?php echo intval($row["Cost"]*1.4)/100 ?></del> &#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h6> 
