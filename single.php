@@ -1,4 +1,5 @@
 <?php
+	include "connect.php";
 	session_start();
 ?>
 <!DOCTYPE html>
@@ -80,22 +81,6 @@
 		});
 </script>
 <!-- //end-smooth-scrolling -->
-<!-- smooth-scrolling-of-move-up -->
-<script type="text/javascript">
-	$(document).ready(function() {
-	
-		var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear' 
-		};
-		
-		$().UItoTop({ easingType: 'easeOutQuart' });
-		
-	});
-</script>
-<!-- //smooth-scrolling-of-move-up -->  
 </head>
 <body>
 	<!-- header -->
@@ -105,19 +90,19 @@
 				<ul> 
 					<?php if(isset($_SESSION['id'])){ ?>
 						<li class="dropdown head-dpdn">
-							<a href="dashboard.php" class="dropdown-toggle">Dashboard</a>
+							<a href="customer/dashboard.php" class="dropdown-toggle">Dashboard</a>
 						</li>
 						<li class="dropdown head-dpdn">
-							<form action="signout.php" method="post">
+							<form action="auth/signout.php" method="post">
 								<button class="dropdown-toggle" style="background-color: Transparent;background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; color:white">Sign Out</button>
 							</form>
 						</li>
 					<?php } else { ?>
 						<li class="dropdown head-dpdn">
-							<a href="login.php" class="dropdown-toggle">Login</a>
+							<a href="auth/login.php" class="dropdown-toggle">Login</a>
 						</li>
 						<li class="dropdown head-dpdn">
-							<a href="signup.php" class="dropdown-toggle">Sign Up</a>
+							<a href="auth/signup.php" class="dropdown-toggle">Sign Up</a>
 						</li>
 					<?php }; ?>
 				</ul>
@@ -128,9 +113,8 @@
 		<!-- //header -->
 		<!-- PHP-->
 		<?php
-				include "connect.php";
 				$sql = "SELECT * FROM ".$product_table." WHERE ProductID = '".$_GET['id']."';";
-				$sql2 = "SELECT * FROM ".$rating_tbl." WHERE ProductID = '".$_GET['id']." ORDER BY Time DESC';";
+				$sql2 = "SELECT * FROM ".$rating_tbl." WHERE ProductID = ".$_GET['id']." ORDER BY Time DESC;";
 				$sql3 = "SELECT AVG(Value) AS avg, Count(RatingID) as tot FROM ".$rating_tbl." WHERE ProductID = '".$_GET['id']."';";
 				$result = $conn->query($sql);
 				$result2 = $conn->query($sql2);
@@ -142,7 +126,7 @@
 		<!-- breadcrumbs --> 
 	<div class="container" style="margin-top: 40px"> 
 		<ol class="breadcrumb breadcrumb1">
-			<li><a href="index.php">Home</a></li>
+			<li><a href=".">Home</a></li>
 			<li><a href="<?php echo 'products.php?type='.$row['Sub_Cat']?>">Products</a></li>
 			<li class="active"><?php echo $row['PName'] ?></li>
 		</ol> 
@@ -174,7 +158,6 @@
 									};
 								?>
 								<li class="rating"><?php echo $row3['tot'] ?> reviews</li>
-								<li><a href="#">Add your review</a></li>
 							</ul> 
 						</div>
 						<div class="single-price">
@@ -186,9 +169,9 @@
 							</ul>	
 						</div> 
 						<p class="single-price-text"><?php echo $row['lg_Desp']?></p>
-						<form action="<?php echo 'addtocart.php?prodid='.$row['ProductID']?> " method="post">
+						<form action="<?php echo 'customer/cart/addtocart.php?prodid='.$row['ProductID']?> " method="post">
 							<label for="email">Quantity:</label>
-							<input type="text" id="quantity" class="user" name="quantity" placeholder="Enter the Quantity" required>	
+							<input type="number" id="quantity" class="user" name="quantity" value="1" min="1" required>	
 							<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 						</form>
 					</div>
@@ -406,34 +389,6 @@
 				</div>
 				<div class="col-md-8 address-right">
 					<div class="col-md-4 footer-grids">
-						<h3>Company</h3>
-						<ul>
-							<li><a href="about.php">About Us</a></li>
-							<li><a href="marketplace.php">Marketplace</a></li>  
-							<li><a href="values.php">Core Values</a></li>  
-							<li><a href="privacy.php">Privacy Policy</a></li>
-						</ul>
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Services</h3>
-						<ul>
-							<li><a href="contact.php">Contact Us</a></li>
-							<li><a href="login.php">Returns</a></li> 
-							<li><a href="faq.php">FAQ</a></li>
-							<li><a href="sitemap.php">Site Map</a></li>
-							<li><a href="login.php">Order Status</a></li>
-						</ul> 
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Payment Methods</h3>
-						<ul>
-							<li><i class="fa fa-laptop" aria-hidden="true"></i> Net Banking</li>
-							<li><i class="fa fa-money" aria-hidden="true"></i> Cash On Delivery</li>
-							<li><i class="fa fa-pie-chart" aria-hidden="true"></i>EMI Conversion</li>
-							<li><i class="fa fa-gift" aria-hidden="true"></i> E-Gift Voucher</li>
-							<li><i class="fa fa-credit-card" aria-hidden="true"></i> Debit/Credit Card</li>
-						</ul>  
-					</div>
 					<div class="clearfix"></div>
 				</div>
 				<div class="clearfix"></div>
@@ -443,28 +398,9 @@
 	<!-- //footer --> 		
 	<div class="copy-right"> 
 		<div class="container">
-			<p>© 2016 Smart bazaar . All rights reserved | Design by <a href="http://w3layouts.com"> W3layouts.</a></p>
+			<p>©2019 Sabka bazaar . All rights reserved</a></p>
 		</div>
 	</div> 
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-        w3ls.render();
-
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
-
-        	if (this.subtotal() > 0) {
-        		items = this.items();
-
-        		for (i = 0, len = items.length; i < len; i++) {
-        			items[i].set('shipping', 0);
-        			items[i].set('shipping2', 0);
-        		}
-        	}
-        });
-    </script>  
-	<!-- //cart-js --> 	 
 	<!-- menu js aim -->
 	<script src="js/jquery.menu-aim.js"> </script>
 	<script src="js/main.js"></script> <!-- Resource jQuery -->

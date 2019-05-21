@@ -105,19 +105,19 @@ $(document).ready(function() {
 				<ul> 
 					<?php if(isset($_SESSION['id'])){ ?>
 						<li class="dropdown head-dpdn">
-							<a href="dashboard.php" class="dropdown-toggle">Dashboard</a>
+							<a href="customer/dashboard.php" class="dropdown-toggle">Dashboard</a>
 						</li>
 						<li class="dropdown head-dpdn">
-							<form action="signout.php" method="post">
+							<form action="auth/signout.php" method="post">
 								<button class="dropdown-toggle" style="background-color: Transparent;background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; color:white">Sign Out</button>
 							</form>
 						</li>
 					<?php } else { ?>
 						<li class="dropdown head-dpdn">
-							<a href="login.php" class="dropdown-toggle">Login</a>
+							<a href="auth/login.php" class="dropdown-toggle">Login</a>
 						</li>
 						<li class="dropdown head-dpdn">
-							<a href="signup.php" class="dropdown-toggle">Sign Up</a>
+							<a href="auth/signup.php" class="dropdown-toggle">Sign Up</a>
 						</li>
 					<?php }; ?>
 				</ul>
@@ -127,19 +127,19 @@ $(document).ready(function() {
 		<div class="header-two"><!-- header-two -->
 			<div class="container">
 				<div class="header-logo">
-					<h1><a href="index.php"><span>S</span>abka</a></h1>
+					<h1><a href="."><span>S</span>abka</a></h1>
 				</div>	
 				<div class="header-search">
-					<form action="#" method="post">
-						<input type="search" name="Search" placeholder="Search for a Product..." required="">
+					<form action="search.php" method="get">
+						<input type="search" name="search" placeholder="Search for a Product..." required="">
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>
 					</form>
 				</div>
-				<div class="header-cart"> 
+				<div class="header-cart">
 					<div class="my-account">
-						<form action="cart.php" method="post" class="last"> 
+						<form action="customer/cart/" method="post" class="last"> 
 							<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 						</form> 
 					</div>
@@ -439,19 +439,19 @@ $(document).ready(function() {
 		<div class="container">  
 			<div class="add-products-row">
 				<div class="w3ls-add-grids">
-					<a href="products1.php"> 
-						<h4>TOP 10 TRENDS FOR YOU FLAT <span>20%</span> OFF</h4>
+					<a href="products.php?type=2001"> 
+						<h4>TOP FASION TRENDS FOR YOU</h4>
 						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
 					</a>
 				</div>
 				<div class="w3ls-add-grids w3ls-add-grids-mdl">
-					<a href="products1.php"> 
-						<h4>SUNDAY SPECIAL DISCOUNT FLAT <span>40%</span> OFF</h4>
+					<a href="products.php?type=4001"> 
+						<h4>SUNDAY SPECIAL DISCOUNT</h4>
 						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
 					</a>
 				</div>
 				<div class="w3ls-add-grids w3ls-add-grids-mdl1">
-					<a href="products.php"> 
+					<a href="products.php?type=1002"> 
 						<h4>LATEST DESIGNS FOR YOU <span> Hurry !</span></h4>
 						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
 					</a>
@@ -519,13 +519,13 @@ $(document).ready(function() {
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
 					<a href="products.php?type=1006" class="wthree-btn wthree"> 
-						<div class="focus-image"><i class="fas fa-camera"></i></div>
+						<div class="focus-image"><i class="fa fa-camera"></i></div>
 						<h4 class="clrchg">Camera</h4>
 					</a>
 				</div> 
 				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
 					<a href="products.php?type=4001" class="wthree-btn wthree5"> 
-						<div class="focus-image"><i class="fas fa-paint-brush"></i></div>
+						<div class="focus-image"><i class="fa fa-paint-brush"></i></div>
 						<h4 class="clrchg">Art</h4> 
 					</a>
 				</div> 
@@ -598,13 +598,9 @@ $(document).ready(function() {
 					<li><a href="#" class="fab fa-android"></a></li>
 				</ul> 
 			</div> 
-			<div class="col-md-6 subscribe-right">
-				<h4>Sign up for email and get 25%off!</h4>  
-				<form action="#" method="post"> 
-					<input type="text" name="email" placeholder="Enter your Email..." required="">
-					<input type="submit" value="Subscribe">
-				</form>
-				<div class="clearfix"> </div> 
+			<div class="col-md-6">
+				Are you a seller?
+				<a href="/seller/">
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -616,36 +612,17 @@ $(document).ready(function() {
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h2><a href="index.php"><span>S</span>mart <i>Bazaar</i></a></h2>
+						<h2><a href="."><span>S</span>abka <i>Bazaar</i></a></h2>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>
-						<li><i class="fa fa-map-marker"></i> 123 San Sebastian, New York City USA.</li>
-						<li><i class="fa fa-mobile"></i> 333 222 3333 </li>
-						<li><i class="fa fa-phone"></i> +222 11 4444 </li>
-						<li><i class="fa fa-envelope-o"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
+						<li><i class="fa fa-map-marker"></i> IIT Mandi, Kamand, Himachal Pradesh</li>
+						<li><i class="fa fa-mobile"></i> 7355414418 </li>
+						<li><i class="fa fa-phone"></i> +917355414418 </li>
+						<li><i class="fa fa-envelope"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
 					</ul> 
 				</div>
-				<div class="col-md-8 address-right">
-					<div class="col-md-4 footer-grids">
-						<h3>Company</h3>
-						<ul>
-							<li><a href="about.php">About Us</a></li>
-							<li><a href="marketplace.php">Marketplace</a></li>  
-							<li><a href="values.php">Core Values</a></li>  
-							<li><a href="privacy.php">Privacy Policy</a></li>
-						</ul>
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Services</h3>
-						<ul>
-							<li><a href="contact.php">Contact Us</a></li>
-							<li><a href="login.php">Returns</a></li> 
-							<li><a href="faq.php">FAQ</a></li>
-							<li><a href="sitemap.php">Site Map</a></li>
-							<li><a href="login.php">Order Status</a></li>
-						</ul> 
-					</div>
+				<div class="col-md-8 address-right" style="height: 170px">
 				</div>
 			</div>
 		</div>
@@ -653,29 +630,10 @@ $(document).ready(function() {
 	<!-- //footer -->		
 	<div class="copy-right"> 
 		<div class="container">
-			<p>© 2016 Smart bazaar . All rights reserved | Design by <a href="http://w3layouts.com"> W3layouts.</a></p>
+			<p>© 2019 Sabka bazaar . All rights reserved</a></p>
 		</div>
 	</div> 
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-        w3ls.render();
-
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
-
-        	if (this.subtotal() > 0) {
-        		items = this.items();
-
-        		for (i = 0, len = items.length; i < len; i++) {
-        			items[i].set('shipping', 0);
-        			items[i].set('shipping2', 0);
-        		}
-        	}
-        });
-    </script>  
-	<!-- //cart-js -->	
-	<!-- countdown.js -->	
+		<!-- countdown.js -->	
 	<script src="js/jquery.knob.js"></script>
 	<script src="js/jquery.throttle.js"></script>
 	<!-- menu js aim -->

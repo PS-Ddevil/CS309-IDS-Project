@@ -65,21 +65,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		});
 </script>
 <!-- //end-smooth-scrolling -->
-<!-- smooth-scrolling-of-move-up -->
-<script type="text/javascript">
-	$(document).ready(function() {
-	
-		var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear' 
-		};
-		
-		$().UItoTop({ easingType: 'easeOutQuart' });
-		
-	});
-</script>
 <!-- //smooth-scrolling-of-move-up -->  
 <!-- the jScrollPane script -->
 <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
@@ -101,19 +86,19 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<ul> 
 					<?php if(isset($_SESSION['id'])){ ?>
 						<li class="dropdown head-dpdn">
-							<a href="dashboard.php" class="dropdown-toggle">Dashboard</a>
+							<a href="customer/dashboard.php" class="dropdown-toggle">Dashboard</a>
 						</li>
 						<li class="dropdown head-dpdn">
-							<form action="signout.php" method="post">
+							<form action="auth/signout.php" method="post">
 								<button class="dropdown-toggle" style="background-color: Transparent;background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; color:white">Sign Out</button>
 							</form>
 						</li>
 					<?php } else { ?>
 						<li class="dropdown head-dpdn">
-							<a href="login.php" class="dropdown-toggle">Login</a>
+							<a href="auth/login.php" class="dropdown-toggle">Login</a>
 						</li>
 						<li class="dropdown head-dpdn">
-							<a href="signup.php" class="dropdown-toggle">Sign Up</a>
+							<a href="auth/signup.php" class="dropdown-toggle">Sign Up</a>
 						</li>
 					<?php }; ?>
 				</ul>
@@ -233,11 +218,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				</ul>
 			</div> 
 			<div class="col-md-6 subscribe-right">
-				<h4>Sign up for email and get 25%off!</h4> 
-				<form action="#" method="post"> 
-					<input type="text" name="email" placeholder="Enter your Email..." required="">
-					<input type="submit" value="Subscribe">
-				</form>
 				<div class="clearfix"> </div> 
 			</div>
 			<div class="clearfix"> </div>
@@ -250,7 +230,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h2><a href="index.php"><span>S</span>mart <i>Bazaar</i></a></h2>
+						<h2><a href="."><span>S</span>mart <i>Bazaar</i></a></h2>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>
@@ -260,36 +240,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						<li><i class="fa fa-envelope-o"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
 					</ul> 
 				</div>
-				<div class="col-md-8 address-right">
-					<div class="col-md-4 footer-grids">
-						<h3>Company</h3>
-						<ul>
-							<li><a href="about.php">About Us</a></li>
-							<li><a href="marketplace.php">Marketplace</a></li>  
-							<li><a href="values.php">Core Values</a></li>  
-							<li><a href="privacy.php">Privacy Policy</a></li>
-						</ul>
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Services</h3>
-						<ul>
-							<li><a href="contact.php">Contact Us</a></li>
-							<li><a href="login.php">Returns</a></li> 
-							<li><a href="faq.php">FAQ</a></li>
-							<li><a href="sitemap.php">Site Map</a></li>
-							<li><a href="login.php">Order Status</a></li>
-						</ul> 
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Payment Methods</h3>
-						<ul>
-							<li><i class="fa fa-laptop" aria-hidden="true"></i> Net Banking</li>
-							<li><i class="fa fa-money" aria-hidden="true"></i> Cash On Delivery</li>
-							<li><i class="fa fa-pie-chart" aria-hidden="true"></i>EMI Conversion</li>
-							<li><i class="fa fa-gift" aria-hidden="true"></i> E-Gift Voucher</li>
-							<li><i class="fa fa-credit-card" aria-hidden="true"></i> Debit/Credit Card</li>
-						</ul>  
-					</div>
+				<div class="col-md-8 address-right" style="height: 170px">
 					<div class="clearfix"></div>
 				</div>
 				<div class="clearfix"></div>
@@ -299,28 +250,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- //footer --> 		
 	<div class="copy-right"> 
 		<div class="container">
-			<p>© 2016 Smart bazaar . All rights reserved | Design by <a href="http://w3layouts.com"> W3layouts.</a></p>
+			<p>©2019 Sabka bazaar . All rights reserved</a></p>
 		</div>
-	</div> 
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-        w3ls.render();
-
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
-
-        	if (this.subtotal() > 0) {
-        		items = this.items();
-
-        		for (i = 0, len = items.length; i < len; i++) {
-        			items[i].set('shipping', 0);
-        			items[i].set('shipping2', 0);
-        		}
-        	}
-        });
-    </script>  
-	<!-- //cart-js -->  
+	</div>  
 	<!-- menu js aim -->
 	<script src="js/jquery.menu-aim.js"> </script>
 	<script src="js/main.js"></script> <!-- Resource jQuery -->

@@ -1,0 +1,30 @@
+<form action="" method="post" id="form" enctype="multipart/form-data">
+    <center style="margin-top: 1%; padding-top: 20px; padding-bottom: 40px; font-size: 25px"><span>Book Fill-in Form</span></center>
+    <span class="txt">Category</span>
+    <select class="box" id="cat" name="genre" onchan/>
+        <?php
+            include "../connect.php";
+            $sql = "SELECT * FROM ".$product_cat.";";
+            $result = $conn->query($sql);
+            while($row = $result->fetch_assoc()){
+        ?>
+            <option value="<?php echo $row['CategoryID']?>"><?php echo $row['CategoryName']?></option>
+        <?php 
+            };
+        ?>
+    </select>
+    <br>
+    <center><input type="submit" value="Proceed"></input></center>
+</form>
+
+
+
+<script>
+        document
+        .getElementById("form")
+        .addEventListener("submit", function(e) {
+            e.preventDefault();
+            var cat_data = $('#cat').val();
+            window.location.href="step2.php?cat="+cat_data;
+        });
+    </script>
