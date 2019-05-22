@@ -36,11 +36,15 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-            <?php if(!isset($_SESSION['cmpid'])){ ?>
-                <div class="text-center p-t-90" style="color: white">
+			<?php if(!isset($_SESSION['cmpid'])){ ?>
+				<div class="text-center" style="color: white">
+					<center><h2 style="color: white">Welcome</h2></center>
+					<br>
+					<span style="color:white">Be a part of the family?</span><br><br>
                     <a class="btn btn-outline-light transbtn" href="signup.php">
                         Sign Up
-                    </a>
+					</a>
+					<br><hr><br>
                     <a class="btn btn-outline-light transbtn" href="login.php">
                         Login
                     </a>

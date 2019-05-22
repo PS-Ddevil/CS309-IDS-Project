@@ -65,7 +65,7 @@
                 <input id="image" name="image" type="file" style="border:none; color: white" required/>
             </div>
             <span class="txt" style="display:none">CategoryID</span>
-            <input class="box" id="CategoryID" name="CategoryID" type="hidden"/>
+            <input class="box" id="CategoryID" name="CategoryID" type="hidden" value="<?php echo $_GET['type']?>"/>
             <div class="wrap-input100 validate-input">
                 <span class="txt" style="color:white">Sub-Category</span>
                 <select class="input100" id="Sub_Cat" name="Sub_Cat" style="border: none"/>

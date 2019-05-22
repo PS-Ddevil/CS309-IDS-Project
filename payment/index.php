@@ -17,10 +17,10 @@ session_start();
     <hr class="featurette-divider"></hr>
     <div class="container">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" id="payment-window">
           <div class="tab-content">
            <div id="stripe" class="tab-pane fade in active">
-              <form accept-charset="UTF-8"  class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
+              <form action="validate.php" accept-charset="UTF-8" class="require-validation" data-cc-on-file="false" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
               <br>
               <div class='form-row'>
                 <div class='form-group required'>
@@ -30,33 +30,33 @@ session_start();
                     </div>
                   </div>
                 <label class='control-label' name="name">Name on Card</label>
-                <input class='form-control' size='4' type='text'>
+                <input class='form-control' name="name" size='4' type='text'>
                 </div>
               </div>
               <div class='form-row'>
                 <div class='form-group card required'>
                   <label class='control-label'>Card Number</label>
-                  <input autocomplete='off' class='form-control card-number' size='20' type='text'>
+                  <input autocomplete='off' name="crno" class='form-control card-number' size='20' type='text'>
               </div>
               </div>
               <div class='form-row'>
                 <div class='form-group card required'>
                   <label class='control-label'>Billing Address</label>
-                  <input autocomplete='off' class='form-control' size='20' type='text'>
+                  <input autocomplete='off' name="Address" class='form-control' size='20' type='text'>
                 </div>
               </div>
               <div class='form-row'>
                 <div class='form-group cvc required'>
                   <label class='control-label'>CVC</label>
-                  <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
+                  <input autocomplete='off' name="cvc" class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
                 </div>
                 <div class='form-group expiration required'>
                   <label class='control-label'>Expiration</label>
-                  <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+                  <input class='form-control card-expiry-month'name="month" placeholder='MM' size='2' type='text'>
                 </div>
                 <div class='form-group expiration required'>
                   <label class='control-label'>Year</label>
-                  <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+                  <input class='form-control card-expiry-year' name="year" placeholder='YYYY' size='4' type='text'>
                 </div>
               </div>
   
@@ -74,26 +74,32 @@ session_start();
         <div class="col-sm-6">
           <br><br><br>
           <div class="jumbotron jumbotron-flat">
-          <div class="center"><h2><i>Total Payment:</i></h2></div>
             <div class="paymentAmt"> 
               <?php 
-                  $sql = "SELECT cart.quantity * (product.Cost)* (1 -  product.Discount/100) as cost
+                  $sql = "SELECT SUM(cart.quantity*(product.Cost)* (1 -  product.Discount/100)) as cost
                   FROM product
                   INNER JOIN cart ON product.ProductID=cart.ProductID and cart.CustomerID=".$_SESSION['id'].";"; 
                   $re_result = $conn->query($sql);
-                  if($row = $re_result->fetch_assoc() == ""){ 
+                  $row = $re_result->fetch_assoc();
+                  if($row['cost'] == 0){ 
               ?>
                     <div class="jumbotron">
                         <div class="container">
                         <h3 class="display-4">You currently do not have any product in your cart</h3><br>
-                        <p class="lead"><a href=".">Continue Shopping</a></p>
+                        <p class="lead"><a href="../">Continue Shopping</a></p>
                         </div>
                     </div>
+                    <script>
+                      document.getElementById('payment-window').style.display = "none";
+                    </script>
               <?php }
                 else {
+              ?>
+                <div class="center"><h2><i>Total Payment:</i></h2></div>
+              <?php
                     $re_result = $conn->query($sql);
                     $row = $re_result->fetch_assoc();
-                    echo "<p>&#x24; ".(intval($row['cost']*1.4)/100)."</p>";
+                    echo "<p>&#x24; ".(intval($row['cost']*100)/100)."</p>";
                 }
               ?>
             </div>                

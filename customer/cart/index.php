@@ -129,7 +129,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         <div class="jumbotron">
             <div class="container">
             <h3 class="display-4">You currently do not have any product in your cart</h3><br>
-            <p class="lead"><a href=".">Continue Shopping</a></p>
+            <p class="lead"><a href="../../">Continue Shopping</a></p>
             </div>
         </div>
     <?php }
@@ -143,7 +143,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <div class="col-lg-4 col-md-4"><img src="<?php echo "../".$row['pic'] ?>" alt="<?php echo $row['PName'] ?>" width="80%"></div>
             <div class="col-lg-4 col-md-8">
             <a href="<?php echo "../../single.php?id=".$row['prodid'] ?>"><h2><?php echo $row['name'] ?></h2></a></br>
-            <span>Price: &#x24;<?php echo intval(($row["mrp"]- ($row["mrp"]*$row["discount"])/100)*1.4)/100 ?></span></br>
+            <span>Price: &#x24;<?php echo intval(($row["mrp"]- ($row["mrp"]*$row["discount"])/100)*100)/100 ?></span></br>
             <span>Quantity: <?php echo $row['quantity'] ?></span>
             <form action="<?php echo 'remove.php?prodid='.$row['prodid']?>" method="post">
                 <input type="submit" value="Remove">
@@ -156,7 +156,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         }
     ?>
         <div class="container">
-            <form action="../../payment/payment.php" method="post">
+            <form action="../../payment/" method="post">
                 <center><input type="submit" value="Proceed to Pay"></center>
             </form>
         </div>

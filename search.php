@@ -119,6 +119,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         }
         // echo $query;
         $result = $conn->query($query);
+        $result2 = $conn->query($query);
     ?>
         <div class="products-row">
         <?php 
@@ -130,16 +131,20 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <div class="col-lg-4 col-md-4"><a href="<?php echo 'single.php?id='.$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" class="img-responsive" alt="img"></a></div>
             <div class="col-lg-4 col-md-8">
             <a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><h2><?php echo $row["PName"] ?></h2></a></br>
-            <span><h4><del>&#x24;<?php echo intval($row["Cost"]*1.4)/100 ?></del> &#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4> </span></br>
+            <span><h4><del>&#x24;<?php echo intval($row["Cost"]*100)/100 ?></del> &#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></h4> </span></br>
             </div>
             </div>
             </div>
         </div>
         <?php
-            }; 
+        };
+        $row = $result->fetch_assoc();
+        if($row == ""){
+           echo "<h1>No search result is found for the given key word.</h1>";
+           echo "Return to <a href='.'>Home</a> Page";
+        } 
         ?>
     </div>
-    ?>
     </div>
     <!-- menu js aim -->
 	<script src="js/jquery.menu-aim.js"> </script>

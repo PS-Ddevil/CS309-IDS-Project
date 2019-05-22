@@ -127,7 +127,7 @@ $(document).ready(function() {
 		<div class="header-two"><!-- header-two -->
 			<div class="container">
 				<div class="header-logo">
-					<h1><a href="."><span>S</span>abka</a></h1>
+					<h1><a href="."><span>S</span>abka <i>Bazaar</i></a></h1>
 				</div>	
 				<div class="header-search">
 					<form action="search.php" method="get">
@@ -251,7 +251,7 @@ $(document).ready(function() {
 										<div class="view-caption agileits-w3layouts">           
 											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
 											<p><?php echo $row['sm_Desp'] ?></p>
-											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4> 	  
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></h4> 	  
 										</div>   
 									</div>   
 									</div>
@@ -293,7 +293,7 @@ $(document).ready(function() {
 										<div class="view-caption agileits-w3layouts">           
 											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
 											<p><?php echo $row['sm_Desp'] ?></p>
-											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4>
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></h4>
 										</div>   
 									</div>   
 									</div>
@@ -335,7 +335,7 @@ $(document).ready(function() {
 										<div class="view-caption agileits-w3layouts">           
 											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
 											<p><?php echo $row['sm_Desp'] ?></p>
-											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4>
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></h4>
 										</div>   
 									</div>   
 									</div>
@@ -377,7 +377,7 @@ $(document).ready(function() {
 										<div class="view-caption agileits-w3layouts">           
 											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
 											<p><?php echo $row['sm_Desp'] ?></p>
-											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4> 
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></h4> 
 										</div>   
 									</div>   
 									</div>
@@ -418,7 +418,7 @@ $(document).ready(function() {
 										<div class="view-caption agileits-w3layouts">           
 											<h4><a href="<?php echo "single.php?id=".$row['ProductID'] ?>"><?php echo $row['PName'] ?></a></h4>
 											<p><?php echo $row['sm_Desp'] ?></p>
-											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4>  
+											<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></h4>  
 										</div>   
 									</div>   
 									</div>
@@ -599,8 +599,9 @@ $(document).ready(function() {
 				</ul> 
 			</div> 
 			<div class="col-md-6">
-				Are you a seller?
-				<a href="/seller/">
+				<h3>Are you a seller?</h3>
+				<br>
+				<a class="btn btn-primary" href="seller/">Click Here</a>
 			</div>
 			<div class="clearfix"> </div>
 		</div>

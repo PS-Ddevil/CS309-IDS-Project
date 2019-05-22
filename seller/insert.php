@@ -1,10 +1,4 @@
-<?php
-	session_start();
-	include "../connect.php";
-	if(!isset($_SESSION['cmpid'])){
-		header("location: login.php");
-	}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,45 +29,44 @@
 <!--===============================================================================================-->
 </head>
 <body>
-
+	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
             <form action="" method="post" id="form" enctype="multipart/form-data">
-				<center style="font-size: 25px; color: white"><span>Product Fill-in Form</span></center><br>
-				<div>
-					<select class="box" id="cat" name="genre"/>
-						<?php
-							$sql = "SELECT * FROM ".$product_cat.";";
-							$result = $conn->query($sql);
-							while($row = $result->fetch_assoc()){
-						?>
-							<option value="<?php echo $row['CategoryID']?>"><?php echo $row['CategoryName']?></option>
-						<?php 
-							};
-						?>
-					</select>
-				</div>
-                <br>
-                <center><input id="btn" class="btn btn-outline-light" type="submit" value="Proceed"></input></center>
+                <center style="margin-top: 1%; padding-top: 20px; padding-bottom: 40px; font-size: 25px; color: white"><span>Fill-In Form</span></center>
+                <span class="txt" style="color:white">Category</span>
+                <select class="box" id="cat" name="genre" onchan/>
+                    <?php
+                        include "../connect.php";
+                        $sql = "SELECT * FROM ".$product_cat.";";
+                        $result = $conn->query($sql);
+                        while($row = $result->fetch_assoc()){
+                    ?>
+                        <option value="<?php echo $row['CategoryID']?>"><?php echo $row['CategoryName']?></option>
+                    <?php 
+                        };
+                    ?>
+                </select>
+                <br><br>
+                <center><input class="btn btn-outline-light" type="submit" value="Proceed"></input></center>
             </form>
 			</div>
 		</div>
-	</div>	
+	</div>
+	
 
 	<div id="dropDownSelect1"></div>
-
 <!--===============================================================================================-->
 	<script>
         document.getElementById("form").addEventListener("submit", function(e) {
             e.preventDefault();
             var cat_data = document.getElementById('cat').value;
-			// alert(cat_data);
             window.location.href="step2.php?cat="+cat_data;
         });
     </script>
 <!--===============================================================================================-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->

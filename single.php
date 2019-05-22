@@ -110,6 +110,11 @@
 				<div class="clearfix"> </div> 
 			</div>
 		</div>
+		<div class="container">
+		<div class="header-logo">
+			<h1><a href="."><span>S</span>abka <i>Bazaar</i></a></h1>
+		</div>
+		</div>
 		<!-- //header -->
 		<!-- PHP-->
 		<?php
@@ -124,7 +129,7 @@
     ?> 
 		<!-- //PHP-->
 		<!-- breadcrumbs --> 
-	<div class="container" style="margin-top: 40px"> 
+	<div class="container" style="margin-top: 40px"> 	
 		<ol class="breadcrumb breadcrumb1">
 			<li><a href=".">Home</a></li>
 			<li><a href="<?php echo 'products.php?type='.$row['Sub_Cat']?>">Products</a></li>
@@ -162,8 +167,8 @@
 						</div>
 						<div class="single-price">
 							<ul>
-								<li>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></li>  
-								<li><del>&#x24;<?php echo intval($row["Cost"]*1.4)/100 ?></del></li> 
+								<li>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></li>  
+								<li><del>&#x24;<?php echo intval($row["Cost"]*100)/100 ?></del></li> 
 								<li><span class="w3off"><?php echo $row['Discount'] ?>% OFF</span></li> 
 								<li>Ends on: June,5th</li>
 							</ul>	
@@ -218,7 +223,7 @@
 									<div class="view-caption agileits-w3layouts">           
 										<h4><a href="<?php echo 'single.php?id='.$row4['ProductID'] ?>"><?php echo $row4['PName'] ?></a></h4>
 										<p><?php echo $row4['sm_Desp'] ?></p>
-										<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h4>
+										<h4>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></h4>
 									</div>        
 								</div> 
 							</div> 
@@ -377,14 +382,14 @@
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h2><a href="index.php"><span>S</span>mart <i>Bazaar</i></a></h2>
+						<h2><a href="index.php"><span>S</span>abka <i>Bazaar</i></a></h2>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>
-						<li><i class="fa fa-map-marker"></i> 123 San Sebastian, New York City USA.</li>
-						<li><i class="fa fa-mobile"></i> 333 222 3333 </li>
-						<li><i class="fa fa-phone"></i> +222 11 4444 </li>
-						<li><i class="fa fa-envelope-o"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
+						<li><i class="fa fa-map-marker"></i> IIT Mandi, Kamand, Himachal Pradesh</li>
+						<li><i class="fa fa-mobile"></i> 7355414418 </li>
+						<li><i class="fa fa-phone"></i> +917355414418 </li>
+						<li><i class="fa fa-envelope"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
 					</ul> 
 				</div>
 				<div class="col-md-8 address-right">

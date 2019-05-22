@@ -139,7 +139,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <div class="col-lg-4 col-md-4"><img src="<?php echo $row['pic'] ?>" alt="<?php echo $row['PName'] ?>" width="80%"></div>
             <div class="col-lg-4 col-md-8">
             <a href="<?php echo "../single.php?id=".$row['prodid'] ?>"><h2><?php echo $row['name'] ?></h2></a></br>
-            <span>Price: &#x24;<?php echo intval(($row["mrp"])*1.4)/100 ?></span></br>
+            <span>Price: &#x24;<?php echo intval(($row["mrp"])*100)/100 ?></span></br>
             <span>Quantity: <?php echo $row['quantity'] ?></span>
             <br><br>
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo 'target'.$row['prodid'] ?>">Give Feedback</button>

@@ -1,12 +1,10 @@
 <?php
 include "../connect.php";
-$name =  addslashes($_POST["name"]);
+$custname =  addslashes($_POST["name"]);
 $email =  addslashes($_POST["email"]);
 $address =  addslashes($_POST["address"]);
 $billadd =  addslashes($_POST["billadd"]);
 $phno =  addslashes($_POST["phno"]);
-// $crno =  addslashes($_POST["crno"]);
-// $crtype =  addslashes($_POST["type"]);
 $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $pic_id = rand(10000000, 999999999);
 $ext = end(explode('.', $_FILES["image"]["name"]));
@@ -23,7 +21,7 @@ if(!$conn){
     die("Connection failed: ". mysqli_connect_error());
 }
 
-$sql = "INSERT INTO customer(CustomerName, Address, Phone, Email, Picture, BillingAddress, Password) VALUES('".$name."','".$address."',".$phno.",'".$email."','".$upload_dir."','".$billadd."' ,'".$pass."')";
+$sql = "INSERT INTO customer(CustomerName, Address, Phone, Email, Picture, BillingAddress, Password) VALUES('".$custname."','".$address."',".$phno.",'".$email."','".$upload_dir."','".$billadd."' ,'".$pass."')";
 
 // echo $sql;
 

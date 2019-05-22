@@ -121,6 +121,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- products -->
 	<div class="products">	 
 		<div class="container">
+			<div class="header-logo">
+				<h1><a href="."><span>S</span>abka <i>Bazaar</i></a></h1>
+			</div>	
 			<div class="col-md-12 product-w3ls-right">
 				<!-- breadcrumbs --> 
 				<ol class="breadcrumb breadcrumb1">
@@ -138,7 +141,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							<div style="min-height:200px"><a href="<?php echo 'single.php?id='.$row['ProductID'] ?>"><img src="<?php echo "images/".$row['Picture'] ?>" class="img-responsive" alt="img"></a></div>
 							<div class="agile-product-text">              
 								<h5><a href="single.php"><?php echo $row["PName"] ?></a></h5> 
-								<h6><del>&#x24;<?php echo intval($row["Cost"]*1.4)/100 ?></del> &#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*1.4)/100 ?></h6> 
+								<h6><del>&#x24;<?php echo intval($row["Cost"]*100)/100 ?></del> &#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></h6> 
 							</div>
 						</div>
 					</div>
@@ -234,10 +237,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>
-						<li><i class="fa fa-map-marker"></i> 123 San Sebastian, New York City USA.</li>
-						<li><i class="fa fa-mobile"></i> 333 222 3333 </li>
-						<li><i class="fa fa-phone"></i> +222 11 4444 </li>
-						<li><i class="fa fa-envelope-o"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
+						<li><i class="fa fa-map-marker"></i> IIT Mandi, Kamand, Himachal Pradesh</li>
+						<li><i class="fa fa-mobile"></i> 7355414418 </li>
+						<li><i class="fa fa-phone"></i> +917355414418 </li>
+						<li><i class="fa fa-envelope"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
 					</ul> 
 				</div>
 				<div class="col-md-8 address-right" style="height: 170px">
