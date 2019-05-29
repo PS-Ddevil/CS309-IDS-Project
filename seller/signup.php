@@ -1,7 +1,7 @@
 <?php
     session_start();
     include "../connect_no_red.php";
-	if(isset($_SESSION['id'])){
+	if(isset($_SESSION['cmpid'])){
 		if(isset($_SESSION['count2'])){
 			if($_SESSION['count2'] != 0){
 				header("location: .");

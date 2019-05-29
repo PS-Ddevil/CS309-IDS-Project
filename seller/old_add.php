@@ -1,18 +1,16 @@
 <?php
 	session_start();
-	include "../connect_no_red.php";
-	if(isset($_SESSION['cmpid'])){
-		if(isset($_SESSION['count2'])){
-			if($_SESSION['count2'] != 0){
-				header("location: .");
-			}
-		}
+    include "../connect_no_red.php";
+	if(!isset($_SESSION['cmpid'])){
+		// echo "hello".$_SESSION['cmpid'];
+		// // echo "<script>alert('heeloooo')</script>;";
+		header("location: login.php");
 	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V3</title>
+	<title>Insert Product</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -43,43 +41,39 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form action="login_check.php" method="POST" class="login100-form validate-form">
-					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span>
-
-					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
-					</span>
-
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<input type="submit" class="login100-form-btn" value="Login" style="color: white; cursor: pointer;">
-					</div>
-
-					<div class="text-center p-t-90" style="color: white">
-						Do not have a account?
-						<a class="txt1" href="signup.php">
-							Sign Up
-						</a>
-					</div>
-				</form>
+            <form action="fill_old.php" method="post" id="form" enctype="multipart/form-data">
+			<center style="margin-top: 1%; padding-top: 20px; padding-bottom: 40px; font-size: 25px; color: white"><span>Fill-In Form</span></center>
+				<span class="txt" style="color:white">Product</span>
+                <select class="box" id="prod" name="prodid" onchan/>
+                    <?php
+                        $sql = "SELECT ProductID, PName FROM product;";
+                        $result = $conn->query($sql);
+                        while($row = $result->fetch_assoc()){
+                    ?>
+                        <option value="<?php echo $row['ProductID']?>"><?php echo $row['PName']?></option>
+                    <?php 
+                        };
+                    ?>
+                </select>
+				<br><br>
+				<div class="wrap-input100 validate-input">
+                <input class="input100" id="Discount" type="text" placeholder="Discount Percentage" name="Discount" required/>
+                <span class="focus-input100" data-placeholder="&#xf207;"></span>
+            	</div>
+				<div class="wrap-input100 validate-input">
+                <input class="input100" id="Quantity" type="text" placeholder="Quantity to Sell" name="Quantity" required/>
+                <span class="focus-input100" data-placeholder="&#xf207;"></span>
+            	</div>
+                <br><br>
+                <center><input class="btn btn-outline-light" type="submit" value="Proceed"></center>
+            </form>
 			</div>
 		</div>
 	</div>
 	
 
 	<div id="dropDownSelect1"></div>
-	
+
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

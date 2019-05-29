@@ -609,7 +609,7 @@ $(document).ready(function() {
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h2><a href="."><span>S</span>abka <i>Bazaar</i></a></h2>
+						<h2><a href="."><span>S</span>abka <i>Dukan</i></a></h2>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>
@@ -627,7 +627,7 @@ $(document).ready(function() {
 	<!-- //footer -->		
 	<div class="copy-right"> 
 		<div class="container">
-			<p>© 2019 Sabka bazaar . All rights reserved</a></p>
+			<p>© 2019 Sabka Dukan . All rights reserved</a></p>
 		</div>
 	</div> 
 		<!-- countdown.js -->	

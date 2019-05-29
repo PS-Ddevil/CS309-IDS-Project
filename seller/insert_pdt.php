@@ -28,7 +28,7 @@ if(move_uploaded_file($_FILES['image']['tmp_name'], $upload_dir)) {
    echo "Upload failed";
 }
 
-$sql = "INSERT INTO product(PName, CategoryID, Sub_Cat, Discount, Picture, Rating, sm_Desp, Cost, lg_Desp) VALUES('".$PName."',".$cat_id.",".$sub_cat.",".$disc.",'".$upload_dir."',0,'".$sm_desp."',".$cost.",'".$lg_desp."')";
+$sql = "INSERT INTO product(PName, CategoryID, Sub_Cat, Discount, Picture, sm_Desp, Cost, lg_Desp) VALUES('".$PName."',".$cat_id.",".$sub_cat.",".$disc.",'".$upload_dir."','".$sm_desp."',".$cost.",'".$lg_desp."')";
 if(mysqli_query($conn, $sql)){
     header("Location: .");
 }else{

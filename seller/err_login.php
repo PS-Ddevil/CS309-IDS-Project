@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Sabka Bazaar</title>
+<title>Sabka Dukan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -19,11 +19,11 @@
 <!-- web-fonts -->  
 </head>
 <body> 
-    <center><img src="images/oops-pic.png" width="20%" style="margin-top:5%"></img></center>
+    <center><img src="../images/oops-pic.png" width="20%" style="margin-top:5%"></img></center>
     <div class="container">
         <div class="jumbotron">
-            <h3><center>Cart Error</center></h3>
-            <center><p>Some error occured while deleting your account <a href="login.php"> Try Again</a></p></center>
+            <h3><center>Login Eroor</center></h3>
+            <center><p>Some error occured while Logging in your account <a href="login.php"> Try Again</a></p></center>
         </div>
     </div>
     <!-- Placed at the end of the document so the pages load faster -->

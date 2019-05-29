@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Sabka Bazaar</title>
+<title>Sabka Dukan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -239,7 +239,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h2><a href="."><span>S</span>mart <i>Bazaar</i></a></h2>
+						<h2><a href="."><span>S</span>mart <i>Dukan</i></a></h2>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>

@@ -112,7 +112,7 @@
 		</div>
 		<div class="container">
 		<div class="header-logo">
-			<h1><a href="."><span>S</span>abka <i>Bazaar</i></a></h1>
+			<h1><a href="."><span>S</span>abka <i>Dukan</i></a></h1>
 		</div>
 		</div>
 		<!-- //header -->
@@ -413,7 +413,7 @@
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h2><a href="index.php"><span>S</span>abka <i>Bazaar</i></a></h2>
+						<h2><a href="index.php"><span>S</span>abka <i>Dukan</i></a></h2>
 						<h6>Your stores. Your place.</h6>
 					</div>
 					<ul>
@@ -443,7 +443,7 @@
 	<!-- //footer --> 		
 	<div class="copy-right"> 
 		<div class="container">
-			<p>©2019 Sabka bazaar . All rights reserved</a></p>
+			<p>©2019 Sabka Dukan . All rights reserved</a></p>
 		</div>
 	</div> 
 	<!-- menu js aim -->

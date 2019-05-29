@@ -1,11 +1,7 @@
 <?php
 	session_start();
-	if(isset($_SESSION['cmpid'])){
-		if(isset($_SESSION['count2'])){
-			if($_SESSION['count2'] != 0){
-				header("location: .");
-			}
-		}
+	if(!isset($_SESSION['cmpid'])){
+		header("location: .");
 	}
 ?>
 <!DOCTYPE html>
@@ -16,14 +12,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- web-fonts -->  
 </head>
 <body> 
-    <center><img src="/images/oops-pic.png" width="20%" style="margin-top:5%"></img></center>
+    <center><img src="../images/thanks.jpg" width="20%" style="margin-top:5%"></img></center>
     <div class="container">
         <div class="jumbotron">
-            <h3><center>Feedback Error</center></h3>
-            <center><p>You cannot submit feedback or a product twice<a href="../"> Go to Home page</a></p></center>
+            <center>
+            <h3>Thank You</h3>
+            <h4>Add another product</h4>
+            <a href="old_add.php">Click Here</a>
+            </center>
+            <center><p><a href="."> Go to home page</a></p></center>
         </div>
     </div>
     <!-- Placed at the end of the document so the pages load faster -->

@@ -1,7 +1,7 @@
 <?php
-   include("connect_no_red.php");
+   include("../connect_no_red.php");
    session_start();
-   if(isset($_SESSION['id'])){
+   if(isset($_SESSION['cmpid'])){
 		if(isset($_SESSION['count2'])){
 			if($_SESSION['count2'] != 0){
 				header("location: .");
@@ -20,6 +20,7 @@
       $hash = $row['password'];
       $id = $row['sellerid'];
       if (password_verify($mypassword, $hash)) {
+            // echo "hi";
             $count = 1;
         } else {
             $count = 0;
@@ -30,7 +31,9 @@
       if($count == 1) {
          $_SESSION['cmpid'] = $id;
          $_SESSION['seller'] = $username;
-         unset($_SESSION['count2']);
+         if(isset($_SESSION['count2'])){
+            unset($_SESSION['count2']);
+         }
          header("location: .");
       }else {
          // echo $sql." ".$hash." ".$mypassword;

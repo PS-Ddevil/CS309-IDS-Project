@@ -29,7 +29,9 @@
         
       if($count == 1) {
          $_SESSION['id'] = $id;
-         unset($_SESSION['count1']);
+         if(isset($_SESSION['count1'])){
+            unset($_SESSION['count1']);
+         }
          header("location: ../");
       }else {
          header("location: err_login.php");

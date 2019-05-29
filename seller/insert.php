@@ -1,13 +1,16 @@
 <?php
-    include "connect.php";
+	session_start();
+    include "../connect_no_red.php";
 	if(!isset($_SESSION['cmpid'])){
+		// echo "hello".$_SESSION['cmpid'];
+		// // echo "<script>alert('heeloooo')</script>;";
 		header("location: login.php");
 	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V3</title>
+	<title>Insert Product</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -39,8 +42,12 @@
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
             <form action="" method="post" id="form" enctype="multipart/form-data">
-                <center style="margin-top: 1%; padding-top: 20px; padding-bottom: 40px; font-size: 25px; color: white"><span>Fill-In Form</span></center>
-                <span class="txt" style="color:white">Category</span>
+			<center style="margin-top: 1%; padding-top: 20px; padding-bottom: 40px; font-size: 25px; color: white"><span>Fill-In Form</span></center>
+                <center><a id="btn" class="btn btn-outline-light" style="color:white" href="old_add.php">Already Existing Product</a></center>
+				<br><hr><br>
+				<center style="font-size: 20px; color: white"><span>Add a New Product</span></center>
+				<br><br>
+				<span class="txt" style="color:white">Category</span>
                 <select class="box" id="cat" name="genre" onchan/>
                     <?php
                         $sql = "SELECT * FROM ".$product_cat.";";
