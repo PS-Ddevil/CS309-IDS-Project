@@ -1,7 +1,11 @@
 <?php
-   include("../connect.php");
+   include("../connect_no_red.php");
    if(isset($_SESSION['id'])){
-		header("location: ../");
+		if(isset($_SESSION['count1'])){
+			if($_SESSION['count1'] != 0){
+				header("location: ../");
+			}
+		}
 	}
    session_start();
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,6 +29,7 @@
         
       if($count == 1) {
          $_SESSION['id'] = $id;
+         unset($_SESSION['count1']);
          header("location: ../");
       }else {
          header("location: err_login.php");

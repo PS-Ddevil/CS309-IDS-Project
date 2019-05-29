@@ -25,7 +25,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- js -->
 <style>
     body{
-        background-color: red;
+        background-color: white;
     }
 </style>
 <script src="../js/jquery-2.2.3.min.js"></script> 
@@ -115,8 +115,33 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         include '../connect.php';
     ?>
     <div class="container" style="padding-top:50px">
+        <center><a href="../"><img src="../images/logo.png" width="150px"></a><center><br><br>
+        <div class="jumbotron">
+        <?php 
+            $sql_cust = "SELECT * FROM customer WHERE CustomerID = ".$_SESSION['id'].";";
+            // echo $sql_cust;
+            $result_cust = $conn->query($sql_cust);
+            $row_cust = $result_cust->fetch_assoc();
+        ?>
+            <h1 class="display-4"><center>Hello, <?php echo $row_cust['CustomerName'] ?></center></h1>
+            <br><br>
+            <div class="container">
+            <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <center><img src="<?php echo $row_cust['Picture']?>" width="200px"></center>
+            </div>
+            <div class="col-lg-8 col-md-8">
+                <span class="cust-details"><b>Address:</b> <?php echo $row_cust['Address']?></span><br>
+                <span class="cust-details"><b>Phone No:</b> <?php echo $row_cust['Phone']?></span><br>
+                <span class="cust-details"><b>Email:</b> <?php echo $row_cust['Email']?></span><br>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding-top:50px">
     <?php
-    $sql = "SELECT history.quantity as quantity , product.ProductID as prodid ,product.PName as name, history.Quantity as quantity, history.Purchase_Price as mrp, product.Picture as pic 
+    $sql = "SELECT history.SellerID as sid, history.TransactionID as transid, history.quantity as quantity , product.ProductID as prodid ,product.PName as name, history.Quantity as quantity, history.Purchase_Price as mrp, product.Picture as pic 
     FROM product
     INNER JOIN history ON product.ProductID=history.ProductID and history.CustomerID=".$_SESSION['id'].";"; 
     // echo $sql;
@@ -131,6 +156,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     <?php }
     else {
         $re_result = $conn->query($sql);
+    ?>
+        <h1 style="color:white"><center><b>Booking History</b></center></h1><br><br>
+    <?php
         while($row = $re_result->fetch_assoc()){
     ?> 	
         <div class="jumbotron">
@@ -156,6 +184,41 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                     <textarea class="form-control" rows="5" id="comment" name="comment" required></textarea>
                     </div> 
                     <input type="submit" value="Submit">
+                </form>
+            </div>
+            <br><br>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo 'target_sel'.$row['sid'] ?>">Give Seller Rating</button>
+            <div id="<?php echo 'target_sel'.$row['sid'] ?>" class="collapse">
+                <br><br>
+                <form action="<?php echo 'sel_feed.php' ?>" method="post">
+                    <input type="hidden" name="prodid" value="<?php echo $row['prodid'] ?>">
+                    <input type="hidden" name="sid" value="<?php echo $row['sid'] ?>">
+                    <input type="hidden" name="transid" value="<?php echo $row['transid'] ?>">
+                    <h4>Rating</h4>
+                    <div class="form-group">
+                    <label for="ship">Shipping</label>
+                    <input type="number" id="ship" name="ship" min="1" max="10" value="1" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="pack">Packaging</label>
+                    <input type="number" id="pack" name="pack" min="1" max="10" value="1" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="qual">Quality</label>
+                    <input type="number" id="qual" name="qual" min="1" max="10" value="1" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="cc">Customer_Care</label>
+                    <input type="number" id="cc" name="cc" min="1" max="10" value="1" required>
+                    </div>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <br><br>
+            <div>
+                <form action="../payment/invoice2.php" method="POST">
+                    <input type="hidden" name="transid" value="<?php echo $row['transid'] ?>"/>
+                    <input type="submit" class="btn btn-info" value="Get Invoice">
                 </form>
             </div>
             </div>

@@ -76,9 +76,11 @@ session_start();
           <div class="jumbotron jumbotron-flat">
             <div class="paymentAmt"> 
               <?php 
-                  $sql = "SELECT SUM(cart.quantity*(product.Cost)* (1 -  product.Discount/100)) as cost
+                  $sql = "SELECT SUM((cart.quantity*product.Cost)*(1 - seller_prod.Discount/100)) as cost
                   FROM product
-                  INNER JOIN cart ON product.ProductID=cart.ProductID and cart.CustomerID=".$_SESSION['id'].";"; 
+                  INNER JOIN cart ON product.ProductID=cart.ProductID and cart.CustomerID=".$_SESSION['id'].
+                  " INNER JOIN seller_prod ON seller_prod.SellerID = cart.SellerID and cart.ProductID = seller_prod.ProductID
+                  INNER JOIN seller ON cart.SellerID = seller.SellerID;";
                   $re_result = $conn->query($sql);
                   $row = $re_result->fetch_assoc();
                   if($row['cost'] == 0){ 

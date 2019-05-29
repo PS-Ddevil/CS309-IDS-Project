@@ -1,0 +1,15 @@
+// $sql_del = "DELETE FROM cart WHERE CustomerID = ".$id;
+// if($conn->query($sql_del)){
+//     header('Location: thankyou.php');
+// }else{
+//     $sql_get = "SELECT * FROM history WHERE TransactionID = ".$transid.";";
+//     $result_insert = $conn->query($sql_get);
+//     if ($result->num_rows > 0) {
+//         while($row = $result->fetch_assoc()){
+//             $query = "INSERT INTO `cart` (`CustomerID`, `ProductID`, `Quantity`) VALUES (".$id.", ".$row['prodid'].", ".$row['product_quantity'].");"; 
+//             $conn->query($query);
+//         }
+//     }
+//     $sql_remove = "DELETE FROM history WHERE TransactionID = ".$transid.";";
+//     $conn->query($sql_del);
+// }

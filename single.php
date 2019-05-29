@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title></title>
+<title>Sabka Dukan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -118,7 +118,13 @@
 		<!-- //header -->
 		<!-- PHP-->
 		<?php
-				$sql = "SELECT * FROM ".$product_table." WHERE ProductID = '".$_GET['id']."';";
+				$view_sql = "CREATE OR REPLACE VIEW product_cumulative AS SELECT product.CategoryID as CategoryID, product.lg_Desp as lg_Desp, product.Sub_Cat as Sub_Cat, product.Picture as Picture, product.PName as PName, product.ProductID as ProductID, product.sm_Desp as sm_Desp, product.Cost as Cost, MAX(seller_prod.Discount) as Discount, COUNT(seller_prod.SellerID) as No_of_Seller, AVG(rating.value) as Rating
+				FROM product 
+				LEFT JOIN seller_prod ON product.ProductID = seller_prod.ProductID
+				LEFT JOIN rating ON rating.ProductID = product.ProductID
+				GROUP BY product.ProductID;";
+				$conn->query($view_sql);
+				$sql = "SELECT * FROM `product_cumulative` WHERE ProductID = ".$_GET['id'].";";
 				$sql2 = "SELECT * FROM ".$rating_tbl." WHERE ProductID = ".$_GET['id']." ORDER BY Time DESC;";
 				$sql3 = "SELECT AVG(Value) AS avg, Count(RatingID) as tot FROM ".$rating_tbl." WHERE ProductID = '".$_GET['id']."';";
 				$result = $conn->query($sql);
@@ -168,17 +174,41 @@
 						<div class="single-price">
 							<ul>
 								<li>&#x24;<?php echo intval(($row["Cost"]- ($row["Cost"]*$row["Discount"])/100)*100)/100 ?></li>  
+								<?php if($row['Discount'] != 0) { ?>
 								<li><del>&#x24;<?php echo intval($row["Cost"]*100)/100 ?></del></li> 
 								<li><span class="w3off"><?php echo $row['Discount'] ?>% OFF</span></li> 
+								<?php }?>
 								<li>Ends on: June,5th</li>
 							</ul>	
 						</div> 
 						<p class="single-price-text"><?php echo $row['lg_Desp']?></p>
+						<?php if($row['No_of_Seller'] != 0) { ?>
 						<form action="<?php echo 'customer/cart/addtocart.php?prodid='.$row['ProductID']?> " method="post">
-							<label for="email">Quantity:</label>
-							<input type="number" id="quantity" class="user" name="quantity" value="1" min="1" required>	
-							<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+						<label>Select Vendor:</label><br>
+							<?php 
+								$sql_seller = "SELECT seller_prod.SellerID as SID, seller_prod.Quantity as Quan, seller_prod.Discount as Dis, seller.Username as Name, AVG((seller_rating.Shipping + seller_rating.Packaging + seller_rating.Quality + seller_rating.Customer_Care)/4) as avg 
+								FROM seller_prod
+								LEFT JOIN seller ON seller.SellerID = seller_prod.SellerID
+								LEFT JOIN seller_rating ON seller.SellerID = seller_rating.SellerID
+								WHERE seller_prod.ProductID = ".$_GET['id']."
+								AND seller_prod.Quantity > 0
+								GROUP BY seller_prod.SellerID
+								ORDER BY Dis DESC;";
+								// echo $sql_seller;
+								$result_seller = $conn->query($sql_seller);
+							?>
+							<?php
+								while($row_sell = $result_seller->fetch_assoc()){
+							?>
+								<input onclick="sellerchange()" quan = "<?php echo $row_sell['Quan'] ?>" type="radio" name="seller" value="<?php echo $row_sell['SID']?>"><?php echo $row_sell['Name']." (avg) @".intval(($row["Cost"]- ($row["Cost"]*$row_sell["Dis"])/100)*100)/100?> <br>
+							<?php } ?>
+							<label id="quan_label" style="display:none">Quantity:</label>
+							<input style="display:none" type="number" id="quantity" class="user" name="quantity" value="1" min="1" required>
+							<button style="display:none" id="quan_sub" type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 						</form>
+						<?php }else{?>
+							<h2 style="color:red">No stock Available</h2>
+						<?php } ?>
 					</div>
 				   <div class="clearfix"> </div>  
 				</div>
@@ -213,8 +243,9 @@
 				</script>
 				<div id="owl-demo5" class="owl-carousel">
 					 	<?php
-							$sql = "SELECT * FROM ".$product_table." WHERE Sub_Cat = ".$row['Sub_Cat']." AND ProductID <> ".$_GET['id']." ORDER BY Rating DESC LIMIT 4;";
+							$sql = "SELECT * FROM `product_cumulative` WHERE Sub_Cat = ".$row['Sub_Cat']." AND ProductID <> ".$_GET['id']." ORDER BY Rating DESC LIMIT 4;";
 							$re_result = $conn->query($sql);
+							// echo $sql;
 							while($row4 = $re_result->fetch_assoc()){
 						?>
 							<div class="item">
@@ -400,6 +431,15 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		function sellerchange(){
+			var max_val = document.querySelector('input[name="seller"]:checked').getAttribute("quan");
+			document.getElementById("quantity").setAttribute("max", max_val);
+			document.getElementById('quantity').style.display = "block";
+			document.getElementById('quan_label').style.display = "block";
+			document.getElementById('quan_sub').style.display = "block"; 
+		} 
+	</script>
 	<!-- //footer --> 		
 	<div class="copy-right"> 
 		<div class="container">

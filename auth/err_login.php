@@ -1,7 +1,11 @@
 <?php
-	session_start();
+    session_start();
 	if(isset($_SESSION['id'])){
-		header("location: ../");
+		if(isset($_SESSION['count1'])){
+			if($_SESSION['count1'] != 0){
+				header("location: ../");
+			}
+		}
 	}
 ?>
 <!DOCTYPE html>

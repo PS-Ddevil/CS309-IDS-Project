@@ -1,5 +1,5 @@
 <?php
-include "../connect.php";
+include "../connect_no_red.php";
 $name =  addslashes($_POST["cmpnyname"]);
 $email =  addslashes($_POST["email"]);
 $phno =  addslashes($_POST["phno"]);

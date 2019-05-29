@@ -1,5 +1,12 @@
 <?php
 	session_start();
+	if(isset($_SESSION['id'])){
+		if(isset($_SESSION['count1'])){
+			if($_SESSION['count1'] != 0){
+				header("location: ../");
+			}
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,6 +88,7 @@
 	<!-- sign up-page -->
 	<div class="login-page">
 		<div class="container"> 
+			<center><a href="../"><img src="../images/logo.png" width="150px"></a><center><br><br>
 			<h3 class="w3ls-title w3ls-title1">Create your account</h3>  
 			<div class="login-body">
 				<form action="submit.php" method="post" enctype="multipart/form-data">

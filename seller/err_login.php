@@ -1,7 +1,11 @@
 <?php
 	session_start();
 	if(isset($_SESSION['cmpid'])){
-		header("location: .");
+		if(isset($_SESSION['count2'])){
+			if($_SESSION['count2'] != 0){
+				header("location: .");
+			}
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -18,8 +22,8 @@
     <center><img src="images/oops-pic.png" width="20%" style="margin-top:5%"></img></center>
     <div class="container">
         <div class="jumbotron">
-            <h3><center>Login Error</center></h3>
-            <center><p>Login with correct credentials <a href="login.php"> Go to Login page</a></p></center>
+            <h3><center>Cart Error</center></h3>
+            <center><p>Some error occured while deleting your account <a href="login.php"> Try Again</a></p></center>
         </div>
     </div>
     <!-- Placed at the end of the document so the pages load faster -->

@@ -1,5 +1,12 @@
 <?php
-include "../connect.php";
+include "../connect_no_red.php";
+if(isset($_SESSION['id'])){
+    if(isset($_SESSION['count1'])){
+        if($_SESSION['count1'] != 0){
+            header("location: ../");
+        }
+    }
+}
 $custname =  addslashes($_POST["name"]);
 $email =  addslashes($_POST["email"]);
 $address =  addslashes($_POST["address"]);
@@ -26,6 +33,7 @@ $sql = "INSERT INTO customer(CustomerName, Address, Phone, Email, Picture, Billi
 // echo $sql;
 
 if(mysqli_query($conn, $sql)){
+    unset($_SESSION['count1']);
     header("Location: login.php");
 }else{
     header("Location: err_signup.php");

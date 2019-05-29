@@ -1,16 +1,16 @@
 <?php
     include "../../connect.php";
     session_start();
-    $productid = $_GET['prodid'];
+    $productid = $_POST['prodid'];
     $custid = $_SESSION['id'];
-
-    $sql = "DELETE FROM cart WHERE ProductID = ".$productid." and CustomerID = ".$custid.";";
+    $conn->query($autocommit);
     
-    if(mysqli_query($conn, $sql)){
-        // echo "<script> alert(".$sql.") </script>";
+    $sql = "CALL revfrmcart(".$productid.",".$custid.")";
+    echo $sql;
+
+    if($conn->query($sql)){
         header("Location: .");
     }else{
         echo "Error: ".$sql."<br>".mysqli_error($conn);
     }
-    mysqli_close($conn);
 ?>

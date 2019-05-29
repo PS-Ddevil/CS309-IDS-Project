@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include "../connect.php";
+	include "../connect_no_red.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +67,10 @@
 				<a class="btn btn-outline-light transbtn" href="signout.php">
 					Signout
 				</a>
+				<br><hr><br>
+				<a class="btn btn-outline-light transbtn" href="remove_acc.php">
+					Delete Membership
+				</a>&nbsp;<span style="color:white">Warning!!</span>
             <?php } ?>
 			</div>
 		</div>

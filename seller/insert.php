@@ -1,4 +1,9 @@
-
+<?php
+    include "connect.php";
+	if(!isset($_SESSION['cmpid'])){
+		header("location: login.php");
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +43,6 @@
                 <span class="txt" style="color:white">Category</span>
                 <select class="box" id="cat" name="genre" onchan/>
                     <?php
-                        include "../connect.php";
                         $sql = "SELECT * FROM ".$product_cat.";";
                         $result = $conn->query($sql);
                         while($row = $result->fetch_assoc()){

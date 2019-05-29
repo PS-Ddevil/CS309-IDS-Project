@@ -10,10 +10,11 @@
     
     if(luhn_check($number) && ($number > 0)){
         if(count_digit($cvc) == "3"){
-            if(($_POST['month'] >= date('m')) && ($_POST['month'] <= 12) && ($_POST['year'] >= date('y'))){
+            if( (($_POST['month'] >= date('m')) && ($_POST['month'] <= 12) && ($_POST['year'] == date('Y'))) || ($_POST['year'] > date('Y')) ){
+                  // echo $_POST['year'];  
                 header('Location: add_to_history.php');
                 }else{
-                echo 'Your Month information is Invalid!';
+                echo 'Your Expiry Date information is Invalid!';
             }
         }else{
             echo 'Your CVC is not valid';

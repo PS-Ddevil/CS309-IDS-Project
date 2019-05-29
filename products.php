@@ -109,9 +109,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- //header --> 
 	<!-- PHP -->
 	<?php
-		include "connect.php";
+		include "connect_no_red.php";
 		$product_id = $_GET['type'];
-		$sql = "SELECT * FROM ".$product_table." WHERE Sub_Cat = ".$product_id." ORDER BY Rating DESC LIMIT 5;";
+		$view_sql = "CREATE OR REPLACE VIEW product_cumulative AS SELECT product.CategoryID as CategoryID, product.lg_Desp as lg_Desp, product.Sub_Cat as Sub_Cat, product.Picture as Picture, product.PName as PName, product.ProductID as ProductID, product.sm_Desp as sm_Desp, product.Cost as Cost, MAX(seller_prod.Discount) as Discount, COUNT(seller_prod.SellerID) as No_of_Seller, AVG(rating.value) as Rating
+		FROM product 
+		LEFT JOIN seller_prod ON product.ProductID = seller_prod.ProductID
+		LEFT JOIN rating ON rating.ProductID = product.ProductID
+		GROUP BY product.ProductID;";
+		$conn->query($view_sql);
+		$sql = "SELECT * FROM product_cumulative WHERE Sub_Cat = ".$product_id." ORDER BY Rating ;";
 		$sql2 = "SELECT Sub_Name FROM ".$product_sub_cat." WHERE Sub_Cat = ".$product_id.";";
 		$re_result = $conn->query($sql);
 		$result = $conn->query($sql2);
@@ -122,7 +128,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<div class="products">	 
 		<div class="container">
 			<div class="header-logo">
-				<h1><a href="."><span>S</span>abka <i>Bazaar</i></a></h1>
+				<h1><a href="."><span>S</span>abka <i>Dukan</i></a></h1>
 			</div>	
 			<div class="col-md-12 product-w3ls-right">
 				<!-- breadcrumbs --> 
@@ -253,7 +259,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- //footer --> 		
 	<div class="copy-right"> 
 		<div class="container">
-			<p>©2019 Sabka bazaar . All rights reserved</a></p>
+			<p>©2019 Sabka Dukan . All rights reserved</a></p>
 		</div>
 	</div>  
 	<!-- menu js aim -->

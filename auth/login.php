@@ -1,7 +1,11 @@
 <?php
 	session_start();
 	if(isset($_SESSION['id'])){
-		header("location: ../");
+		if(isset($_SESSION['count1'])){
+			if($_SESSION['count'] != 0){
+				header("location: ../");
+			}
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -84,6 +88,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- login-page -->
 	<div class="login-page">
 		<div class="container"> 
+			<center><a href="../"><img src="../images/logo.png" width="150px"></a><center><br><br>
 			<h3 class="w3ls-title w3ls-title1">Login to your account</h3>  
 			<div class="login-body">
 				<form action="login_check.php" method="post">

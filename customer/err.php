@@ -1,11 +1,7 @@
 <?php
 	session_start();
-	if(isset($_SESSION['id'])){
-		if(isset($_SESSION['count1'])){
-			if($_SESSION['count1'] != 0){
-				header("location: ../");
-			}
-		}
+	if(!isset($_SESSION['id'])){
+		header("location: ../");
 	}
 ?>
 <!DOCTYPE html>
@@ -22,8 +18,8 @@
     <center><img src="../images/oops-pic.png" width="20%" style="margin-top:5%"></img></center>
     <div class="container">
         <div class="jumbotron">
-            <h3><center>Signup Error</center></h3>
-            <center><p>Signup with Invalid Data. Please enter correct/valid data<a href="signup.php"> Go to Signup page</a></p></center>
+            <h3><center>Feedback Error</center></h3>
+            <center><p>There was some ERROR<a href="../"> Go to Home page</a></p></center>
         </div>
     </div>
     <!-- Placed at the end of the document so the pages load faster -->

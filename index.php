@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Sabka Bazaar</title>
+<title>Sabka Dukan</title>
 <link rel="icon" href="images/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -127,7 +127,7 @@ $(document).ready(function() {
 		<div class="header-two"><!-- header-two -->
 			<div class="container">
 				<div class="header-logo">
-					<h1><a href="."><span>S</span>abka <i>Bazaar</i></a></h1>
+					<h1><a href="."><span>S</span>abka <i>Dukan</i></a></h1>
 				</div>	
 				<div class="header-search">
 					<form action="search.php" method="get">
@@ -238,10 +238,18 @@ $(document).ready(function() {
 								</script>
 								<div id="owl-demo" class="owl-carousel"> 
 								<?php
-									include 'connect.php';
+									include 'connect_no_red.php';
 								?>
 								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '101' ORDER BY Rating DESC LIMIT 5;";
+								$view_sql = "CREATE OR REPLACE VIEW product_cumulative AS SELECT product.CategoryID as CategoryID, product.lg_Desp as lg_Desp, product.Sub_Cat as Sub_Cat, product.Picture as Picture, product.PName as PName, product.ProductID as ProductID, product.sm_Desp as sm_Desp, product.Cost as Cost, MAX(seller_prod.Discount) as Discount, COUNT(seller_prod.SellerID) as No_of_Seller, AVG(rating.value) as Rating
+								FROM product 
+								LEFT JOIN seller_prod ON product.ProductID = seller_prod.ProductID
+								LEFT JOIN rating ON rating.ProductID = product.ProductID
+								GROUP BY product.ProductID;";
+								// echo $view_sql;
+								$conn->query($view_sql);
+								$sql = "SELECT * FROM product_cumulative WHERE CategoryID ='101' ORDER BY Rating DESC LIMIT 5";
+								// echo $sql;
 								$re_result = $conn->query($sql);
 									while($row = $re_result->fetch_assoc()){
 								?>
@@ -280,10 +288,7 @@ $(document).ready(function() {
 								</script>
 								<div id="owl-demo1" class="owl-carousel"> 
 								<?php
-									include 'connect.php';
-								?>
-								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '102' ORDER BY Rating DESC LIMIT 5;";
+								$sql = "SELECT * FROM product_cumulative WHERE CategoryID ='102' ORDER BY Rating DESC LIMIT 5";
 								$re_result = $conn->query($sql);
 									while($row = $re_result->fetch_assoc()){
 								?>
@@ -322,10 +327,7 @@ $(document).ready(function() {
 								</script>
 								<div id="owl-demo2" class="owl-carousel"> 
 								<?php
-									include 'connect.php';
-								?>
-								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '103' ORDER BY Rating DESC LIMIT 5;";
+								$sql = "SELECT * FROM product_cumulative WHERE CategoryID ='103' ORDER BY Rating DESC LIMIT 5";
 								$re_result = $conn->query($sql);
 									while($row = $re_result->fetch_assoc()){
 								?>
@@ -364,10 +366,7 @@ $(document).ready(function() {
 								</script>
 								<div id="owl-demo3" class="owl-carousel"> 
 								<?php
-									include 'connect.php';
-								?>
-								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '104' ORDER BY Rating DESC LIMIT 5;";
+								$sql = "SELECT * FROM product_cumulative WHERE CategoryID ='104' ORDER BY Rating DESC LIMIT 5";
 								$re_result = $conn->query($sql);
 									while($row = $re_result->fetch_assoc()){
 								?>
@@ -405,10 +404,7 @@ $(document).ready(function() {
 								</script>
 								<div id="owl-demo4" class="owl-carousel"> 
 								<?php
-									include 'connect.php';
-								?>
-								<?php
-								$sql = "SELECT * FROM ".$product_table." WHERE CategoryID = '105' ORDER BY Rating DESC LIMIT 5;";
+								$sql = "SELECT * FROM product_cumulative WHERE CategoryID ='105' ORDER BY Rating DESC LIMIT 5";
 								$re_result = $conn->query($sql);
 								while($row = $re_result->fetch_assoc()){
 								?>

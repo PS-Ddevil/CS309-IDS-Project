@@ -19,7 +19,7 @@
     <div class="container">
         <div class="jumbotron">
             <h3><center>Feedback Error</center></h3>
-            <center><p>You cannot submit feedback or a product twice<a href="../"> Go to Home page</a></p></center>
+            <center><p>You cannot submit feedback of a product twice<a href="../"> Go to Home page</a></p></center>
         </div>
     </div>
     <!-- Placed at the end of the document so the pages load faster -->

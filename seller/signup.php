@@ -1,8 +1,12 @@
 <?php
     session_start();
-    include "../connect.php";
-    if(isset($_SESSION['cmpid'])){
-		header("location: .");
+    include "../connect_no_red.php";
+	if(isset($_SESSION['id'])){
+		if(isset($_SESSION['count2'])){
+			if($_SESSION['count2'] != 0){
+				header("location: .");
+			}
+		}
 	}
 ?>
 <!DOCTYPE html>

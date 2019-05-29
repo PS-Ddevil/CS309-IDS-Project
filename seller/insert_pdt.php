@@ -1,7 +1,6 @@
-<?php include '../connect.php';?>
 <?php
 session_start();
-include "../connect.php";
+include "connect.php";
 if(!isset($_SESSION['cmpid'])){
     header("location: login.php");
 }

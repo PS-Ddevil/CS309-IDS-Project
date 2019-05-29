@@ -25,7 +25,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- js -->
 <style>
     body{
-        background-color: red;
+        background-color: white;
     }
 </style>
 <script src="../../js/jquery-2.2.3.min.js"></script> 
@@ -118,11 +118,14 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         include '../../connect.php';
     ?>
     <div class="container" style="padding-top:50px">
+    <center><a href="../../"><img src="../../images/logo.png" width="150px"></a><center><br><br>
+    <h1><b>Cart</b></h1>
     <?php
-    // $sql = "SELECT * FROM ".$cart." WHERE customerid=".$_SESSION['id'].";";
-    $sql = "SELECT cart.quantity as quantity , product.ProductID as prodid ,product.PName as name, product.Cost as mrp, product.Discount as discount, product.Picture as pic
+    $sql = "SELECT seller.Username as sname, cart.SellerID as seller, cart.quantity as quantity , product.ProductID as prodid ,product.PName as name, product.Cost as mrp, seller_prod.Discount as discount, Picture as pic
     FROM product
-    INNER JOIN cart ON product.ProductID=cart.ProductID and cart.CustomerID=".$_SESSION['id'].";"; 
+    INNER JOIN cart ON product.ProductID=cart.ProductID and cart.CustomerID=".$_SESSION['id'].
+    " INNER JOIN seller_prod ON seller_prod.SellerID = cart.SellerID and cart.ProductID = seller_prod.ProductID
+    INNER JOIN seller ON cart.SellerID = seller.SellerID;"; 
     // echo $sql;
     $re_result = $conn->query($sql);
     if($row = $re_result->fetch_assoc() == ""){ ?>
@@ -140,12 +143,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         <div class="jumbotron">
             <div class="container">
             <div class="row">
-            <div class="col-lg-4 col-md-4"><img src="<?php echo "../".$row['pic'] ?>" alt="<?php echo $row['PName'] ?>" width="80%"></div>
+            <div class="col-lg-4 col-md-4"><center><img src="<?php echo "../".$row['pic'] ?>" alt="<?php echo $row['PName'] ?>" height="100px"><center></div>
             <div class="col-lg-4 col-md-8">
             <a href="<?php echo "../../single.php?id=".$row['prodid'] ?>"><h2><?php echo $row['name'] ?></h2></a></br>
-            <span>Price: &#x24;<?php echo intval(($row["mrp"]- ($row["mrp"]*$row["discount"])/100)*100)/100 ?></span></br>
-            <span>Quantity: <?php echo $row['quantity'] ?></span>
-            <form action="<?php echo 'remove.php?prodid='.$row['prodid']?>" method="post">
+            <span><b>Sold by </b> <?php echo $row['sname'] ?></span><br>
+            <span><b>Price:</b> &#x24;<?php echo intval(($row["mrp"]- ($row["mrp"]*$row["discount"])/100)*100)/100 ?> X <?php echo $row['quantity'] ?> = &#x24;<?php echo (intval(($row["mrp"]- ($row["mrp"]*$row["discount"])/100)*100)/100)*($row['quantity']) ?> </span></br>
+            <span><b>Quantity:</b> <?php echo $row['quantity'] ?></span>
+            <form action="remove.php" method="post">
+                <input type="hidden" name="prodid" value="<?php echo $row['prodid']?>" />
+                <input type="hidden" name="sid" value="<?php echo $row['seller']?>" />
                 <input type="submit" value="Remove">
             </form>
             </div>
@@ -158,6 +164,12 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         <div class="container">
             <form action="../../payment/" method="post">
                 <center><input type="submit" value="Proceed to Pay"></center>
+            </form>
+        </div>
+        <br><br>
+        <div class="container">
+            <form action="../../" method="post">
+                <center><input type="submit" value="Back to Home"></center>
             </form>
         </div>
     <?php
