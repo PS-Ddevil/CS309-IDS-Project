@@ -54,6 +54,10 @@
                 <span class="focus-input100" data-placeholder="&#xf207;"></span>
             </div>
             <div class="wrap-input100 validate-input">
+                <input class="input100" id="Quan" type="text" placeholder="Quantity" name="Quan" required/>
+                <span class="focus-input100" data-placeholder="&#xf207;"></span>
+            </div>
+            <div class="wrap-input100 validate-input">
                 <input class="input100" id="sm_desp" type="text" placeholder="Small Description" name="sm_Description" required/>
                 <span class="focus-input100" data-placeholder="&#xf207;"></span>
             </div>
